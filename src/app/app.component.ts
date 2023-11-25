@@ -9,11 +9,11 @@ import { AuthService } from './_services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private roles: string[] = [];
+  role?: string;
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
-  email?: string;
+  token?: string;
 
   eventBusSub?: Subscription;
 
@@ -27,22 +27,13 @@ export class AppComponent {
 
     if (this.isLoggedIn) {
       const user = this.storageService.getUser();
-      this.roles = user.roles;
-      this.email = user.email;
+      this.role = user.role;
+      this.token = user.accessToken;
     }
   }
 
   logout(): void {
-    this.authService.logout().subscribe({
-      next: res => {
-        console.log(res);
-        this.storageService.clean();
-
-        window.location.reload();
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+    this.storageService.clean();
+    window.location.reload();
   }
 }

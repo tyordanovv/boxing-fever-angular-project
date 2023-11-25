@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
-const API_URL = 'http://localhost:8080/api/v1/board/';
+const API_URL = 'http://localhost:8080/api/v1/user/';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root',
@@ -10,15 +15,29 @@ const API_URL = 'http://localhost:8080/api/v1/board/';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', { responseType: 'text' });
+  getUserProfile(id: string): Observable<any> {
+    return this.http.get(
+      API_URL + id, httpOptions);
   }
 
-  getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
+  getAllUsers(): Observable<any> {
+    return this.http.get(
+      API_URL + 'all', httpOptions
+    );
   }
 
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
+  deleteUser(id: string): Observable<any> {
+    return this.http.delete(
+      API_URL + id, httpOptions);
+  }
+
+  updateUser(user: any): Observable<any>{
+    return this.http.post(
+      API_URL,
+      {
+        user
+      },
+      httpOptions
+    )
   }
 }

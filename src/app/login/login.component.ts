@@ -15,14 +15,14 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
+  role: string = '';
 
   constructor(private authService: AuthService, private storageService: StorageService) { }
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
+      this.role = this.storageService.getUser().role;
     }
   }
 
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
+        this.role = this.storageService.getUser().roles;
         this.reloadPage();
       },
       error: err => {
