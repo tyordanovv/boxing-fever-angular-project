@@ -31,11 +31,15 @@ export class UserService {
       API_URL + id, httpOptions);
   }
 
-  updateUser(user: any): Observable<any>{
+  updateUser(id: number | null, firstName: string | null, lastName: string | null, address:string | null, email: string | null): Observable<any>{
     return this.http.post(
-      API_URL,
+      API_URL + 'edit',
       {
-        user
+        id,
+        firstName,
+        lastName,
+        email,
+        address
       },
       httpOptions
     )

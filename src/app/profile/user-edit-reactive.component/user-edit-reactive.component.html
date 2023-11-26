@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Flight Edit Reactive</h2>
+    </div>
+  
+    <div class="card-body">
+      <form [formGroup]="form">
+        <div class="alert alert-danger" *ngIf="!form.controls.firstName.valid">
+          {{ form.controls.firstName.errors | json }}
+        </div>
+        <div class="alert alert-danger" *ngIf="!form.controls.lastName.valid">
+          {{ form.controls.lastName.errors | json }}
+        </div>
+        <div class="alert alert-danger" *ngIf="!form.controls.userEmail.valid">
+          {{ form.controls.userEmail.errors | json }}
+        </div>
+        <div class="alert alert-danger" *ngIf="!form.controls.address.valid">
+          {{ form.controls.address.errors | json }}
+        </div>
+  
+        <div class="form-group">
+          <strong> ID: </strong>
+          <input formControlName="id" class="form-control" />
+        </div>
+  
+        <div class="form-group">
+          <strong> First name: </strong>
+          <input formControlName="firstName" class="form-control" />
+        </div>
+  
+        <div class="form-group">
+          <strong> Last Name: </strong>
+          <input formControlName="lastName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <strong> Email: </strong>
+          <input formControlName="userEmail" class="form-control" />
+        </div>
+        
+        <div class="form-group">
+          <strong> Address: </strong>
+          <input formControlName="address" class="form-control" />
+        </div>
+  
+        <div class="form-group">
+          <button (click)="save()" class="btn">Save</button>
+        </div>
+      </form> 
+    </div>
+  </div>
+  
