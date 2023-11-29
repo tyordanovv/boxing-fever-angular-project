@@ -8,9 +8,8 @@
     <p>{{ content }}</p>
   </mat-card-content>
   <mat-card-actions class="section-card-actions">
-    <button mat-button (click)="onButtonSeeAllClick('See all')">See all</button>
-
-    <button mat-button (click)="onButtonClick('Add session')">Add session</button>
+    <button mat-button [routerLink]="['/session/all']">See all</button>
+    <button mat-button [routerLink]="['/session/create']">Add session</button>
   </mat-card-actions>
 </mat-card>
 

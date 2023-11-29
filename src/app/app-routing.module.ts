@@ -8,6 +8,8 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { UserEditReactiveComponent } from './profile/user-edit-reactive.component/user-edit-reactive.component';
+import { SessionsViewComponent } from './board-admin/session-section/sessions-view/sessions-view.component';
+import { CreateSessionComponent } from './board-admin/session-section/create-session/create-session.component';
 
 const routes: Routes = [
   { 
@@ -37,6 +39,14 @@ const routes: Routes = [
   { 
     path: 'profile/edit', 
     component: UserEditReactiveComponent
+  },
+  { 
+    path: 'session/all', 
+    component: SessionsViewComponent
+  },
+  { 
+    path: 'session/create', 
+    component: CreateSessionComponent
   },
   { 
     path: '', redirectTo: 'home', pathMatch: 'full' }

@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StorageService } from 'src/app/_services/storage.service';
 import { UserService } from 'src/app/_services/user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { emailValidator } from 'src/app/util/validators/user-validator';
 
 @Component({
@@ -42,7 +41,6 @@ export class UserEditReactiveComponent {
     private fb: FormBuilder,
     private storageService: StorageService, 
     private userService: UserService,
-    private snackBar: MatSnackBar
     ) {}
 
   ngOnInit(): void {
@@ -81,14 +79,5 @@ export class UserEditReactiveComponent {
       }
     })
     console.log('Updated user:', updatedUser);
-  }
-
-  private showSnackbar(message: string, panelClass: string = 'success'): void {
-    this.snackBar.open(message, '', {
-      duration: 3000, 
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-      panelClass: ['snackbar-' + panelClass],
-    });
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SessionServiceService} from "../../_services/session-service.service";
+import { SessionService} from "../../_services/session-service";
 import {sessionModel} from "../../model/session.model";
 
 
@@ -20,19 +20,12 @@ export class SessionSectionComponent {
 
 
 
-  constructor(private sessionService: SessionServiceService) {
+  constructor(private sessionService: SessionService) {
 
   }
 
   onButtonClick(buttonText: string) {
     alert(`${buttonText} clicked!`);
-  }
-
-  onButtonSeeAllClick(buttonText: string) {
-    this.sessionService.fetchData().subscribe(value => {
-      this.sessions = value;
-    });
-    alert(this.sessions);
   }
 }
 
