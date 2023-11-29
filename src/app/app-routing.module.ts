@@ -8,38 +8,51 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { UserEditReactiveComponent } from './profile/user-edit-reactive.component/user-edit-reactive.component';
+import { ClassesListComponent } from './classes/classes-list/classes-list.component';
+import { ClassesAddComponent } from './classes/classes-add/classes-add.component';
 
 const routes: Routes = [
-  { 
-    path: 'home', 
-    component: HomeComponent 
+  {
+    path: 'home',
+    component: HomeComponent
   },
-  { 
-    path: 'login', 
-    component: LoginComponent 
+  {
+    path: 'login',
+    component: LoginComponent
   },
-  { 
-    path: 'register', 
-    component: RegisterComponent 
+  {
+    path: 'register',
+    component: RegisterComponent
   },
-  { 
-    path: 'user', 
-    component: BoardUserComponent 
+  {
+    path: 'user',
+    component: BoardUserComponent
   },
-  { 
-    path: 'admin', 
-    component: BoardAdminComponent 
+  {
+    path: 'admin',
+    component: BoardAdminComponent
   },
-  { 
-    path: 'profile', 
-    component: UserProfileComponent 
+  {
+    path: 'profile',
+    component: UserProfileComponent
   },
-  { 
-    path: 'profile/edit', 
+  {
+    path: 'profile/edit',
     component: UserEditReactiveComponent
   },
-  { 
-    path: '', redirectTo: 'home', pathMatch: 'full' }
+  {
+    path: 'classes',
+    component: ClassesListComponent
+  },
+  {
+    path: 'classes/add',
+    component: ClassesAddComponent
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

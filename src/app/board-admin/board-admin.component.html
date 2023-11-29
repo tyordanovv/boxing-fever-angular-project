@@ -1,2 +1,13 @@
 <div class="container">
+  <h1>Admin Board</h1>
+  <p>Welcome to the admin dashboard. From here, you can manage training classes.</p>
+
+  <ul class="list-group">
+    <li class="list-group-item" (click)="navigateToClassesList()">
+      <i class="fas fa-list-ul"></i> View Classes
+    </li>
+    <li class="list-group-item" (click)="navigateToClassesAdd()">
+      <i class="fas fa-plus"></i> Add Class
+    </li>
+  </ul>
 </div>

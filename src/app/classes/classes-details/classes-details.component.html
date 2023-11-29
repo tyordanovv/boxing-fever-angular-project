@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Class Details</h2>
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <h4>{{ trainingClass?.className }}</h4>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ trainingClass?.description }}</p>
+
+      <div class="row">
+        <div class="col-6">
+          <strong>Duration:</strong> {{ trainingClass?.durationInMinutes }} minutes
+        </div>
+        <div class="col-6">
+          <strong>Category:</strong> {{ trainingClass?.category }}
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <strong>Trainers:</strong>
+        <ul>
+          <li *ngFor="let trainer of trainingClass?.trainers">
+            {{ trainer.name }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-3">
+        <strong>Schedule:</strong>
+        <ul *ngIf="trainingClass?.schedule">
+          <li>Date: {{ trainingClass?.schedule.date }}</li>
+          <li>Time: {{ trainingClass?.schedule.time }}</li>
+          <li>Location: {{ trainingClass?.schedule.location }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

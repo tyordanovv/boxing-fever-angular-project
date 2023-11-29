@@ -13,6 +13,10 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ClassesComponent } from './classes/classes.component';
+import { ClassesListComponent } from './classes-list/classes-list.component';
+import { ClassesAddComponent } from './classes-add/classes-add.component';
+import { ClassesDetailsComponent } from './classes-details/classes-details.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     BoardAdminComponent,
     BoardUserComponent,
     UserProfileComponent,
+    ClassesComponent,
+    ClassesListComponent,
+    ClassesAddComponent,
+    ClassesDetailsComponent,
   ],
   imports: [
     BrowserModule,
