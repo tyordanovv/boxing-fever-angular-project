@@ -7,7 +7,7 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./class-section.component.css']
 })
 export class ClassSectionComponent {
-  @Input() title: string = '';
+  @Input() title: string = 'Class-Section';
   @Input() content: string = '';
 
   onButtonClick(buttonText: string) {

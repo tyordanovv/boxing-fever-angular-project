@@ -6,7 +6,7 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./trainer-section.component.css']
 })
 export class TrainerSectionComponent {
-  @Input() title: string = '';
+  @Input() title: string = 'Trainer-Section';
   @Input() content: string = '';
 
   onButtonClick(buttonText: string) {
