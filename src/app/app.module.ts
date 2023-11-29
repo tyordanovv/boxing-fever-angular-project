@@ -14,15 +14,25 @@ import { UserProfileComponent } from './profile/user-profile/user-profile.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { MatCardModule} from "@angular/material/card";
+import { TrainerSectionComponent } from './board-admin/trainer-section/trainer-section.component';
+import { ClassSectionComponent } from './board-admin/class-section/class-section.component';
+import { SessionSectionComponent } from './board-admin/session-section/session-section.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    BoardAdminComponent,
     BoardUserComponent,
     UserProfileComponent,
+    BoardAdminComponent,
+
+    SessionSectionComponent,
+    ClassSectionComponent,
+    TrainerSectionComponent
+
   ],
   imports: [
     BrowserModule,
@@ -30,7 +40,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormsModule,
     HttpClientModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule,
+
+
   ],
   bootstrap: [AppComponent]
 })
