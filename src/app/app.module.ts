@@ -18,9 +18,8 @@ import { MatCardModule} from "@angular/material/card";
 import { TrainerSectionComponent } from './board-admin/trainer-section/trainer-section.component';
 import { ClassSectionComponent } from './board-admin/class-section/class-section.component';
 import { SessionSectionComponent } from './board-admin/session-section/session-section.component';
-import { CreateSessionComponent } from './board-admin/session-section/create-session/create-session.component';
-import { CreateClassComponent } from './create-class/create-class.component';
-import { ClassesViewComponent } from './classes-view/classes-view.component';
+import { CreateClassComponent } from './board-admin/class-section/create-class/create-class.component';
+import { ClassesViewComponent } from './board-admin/class-section/classes-view/classes-view.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,6 @@ import { ClassesViewComponent } from './classes-view/classes-view.component';
     SessionSectionComponent,
     ClassSectionComponent,
     TrainerSectionComponent,
-    CreateSessionComponent,
     CreateClassComponent,
     ClassesViewComponent
 

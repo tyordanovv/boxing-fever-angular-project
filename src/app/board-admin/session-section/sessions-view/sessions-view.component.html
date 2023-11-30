@@ -1,32 +1,4 @@
 <p>sessions-view works!</p>
-<!-- sessions-view.component.html -->
 
-<div *ngIf="isSuccessful">
-    <p>Session created successfully!</p>
-  </div>
-  
-  <div class="card-body">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <label for="startHour">Start Hour:</label>
-      <input type="date" formControlName="startHour" />
-  
-      <label for="endHour">End Hour:</label>
-      <input type="date" formControlName="endHour" />
-  
-      <label for="capacity">Capacity:</label>
-      <input type="number" formControlName="capacity" />
-  
-      <label for="sessionDate">Session Date:</label>
-      <input type="date" formControlName="sessionDate" />
-  
-      <label for="className">Class Name:</label>
-      <input type="text" formControlName="className" />
-  
-      <button type="submit" [disabled]="!form.valid">Create Session</button>
-    </form>
-  
-    <div *ngIf="errorMessage">
-      <p>{{ errorMessage }}</p>
-    </div>
-  </div>
+
   
