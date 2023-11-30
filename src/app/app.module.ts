@@ -19,6 +19,8 @@ import { TrainerSectionComponent } from './board-admin/trainer-section/trainer-s
 import { ClassSectionComponent } from './board-admin/class-section/class-section.component';
 import { SessionSectionComponent } from './board-admin/session-section/session-section.component';
 import { CreateSessionComponent } from './board-admin/session-section/create-session/create-session.component';
+import { CreateClassComponent } from './create-class/create-class.component';
+import { ClassesViewComponent } from './classes-view/classes-view.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { CreateSessionComponent } from './board-admin/session-section/create-ses
     SessionSectionComponent,
     ClassSectionComponent,
     TrainerSectionComponent,
-    CreateSessionComponent
+    CreateSessionComponent,
+    CreateClassComponent,
+    ClassesViewComponent
 
   ],
   imports: [
