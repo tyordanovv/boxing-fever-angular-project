@@ -1,21 +1,25 @@
 <div class="card">
     <div class="card-header">
-      <h2 class="card-title">Flight Edit Reactive</h2>
+      <h2 class="card-title">Edit User Profile</h2>
+    </div>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      <p>User profile was successfully updated!</p>
     </div>
   
-    <div class="card-body">
+    <div class="card-body" *ngIf="!isSuccessful">
       <form [formGroup]="form">
         <div class="alert alert-danger" *ngIf="!form.controls.firstName.valid">
-          {{ form.controls.firstName.errors | json }}
+          <p class="text-danger">First Name</p>
         </div>
         <div class="alert alert-danger" *ngIf="!form.controls.lastName.valid">
-          {{ form.controls.lastName.errors | json }}
+          <p class="text-danger">Last Name</p>
         </div>
-        <div class="alert alert-danger" *ngIf="!form.controls.userEmail.valid">
-          {{ form.controls.userEmail.errors | json }}
+        <div class="alert alert-danger" *ngIf="!form.controls.email.valid">
+          <p class="text-danger">Invalid Email.</p>
         </div>
         <div class="alert alert-danger" *ngIf="!form.controls.address.valid">
-          {{ form.controls.address.errors | json }} 
+          <p class="text-danger">Address</p>
         </div>
   
         <div class="form-group">
@@ -35,7 +39,7 @@
 
         <div class="form-group">
           <strong> Email: </strong>
-          <input formControlName="userEmail" class="form-control" />
+          <input formControlName="email" class="form-control" />
         </div>
         
         <div class="form-group">

@@ -1,8 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SessionService } from 'src/app/_services/session-service';// Update the path
 import { createSessionRequst } from 'src/app/model/create.session.request';
+import { timeOrderValidator } from 'src/app/util/validators/time.validator';
 
 @Component({
   selector: 'app-create-session',
@@ -14,11 +16,17 @@ import { createSessionRequst } from 'src/app/model/create.session.request';
 export class CreateSessionComponent implements OnInit{
   isSuccessful = false;
   errorMessage = '';
+  classes: any[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private sessionService: SessionService 
+    private http: HttpClient,
+    private sessionService: SessionService
   ) {}
+
+  ngOnInit(): void {
+    this.loadClasses(); 
+  }
 
   form = this.fb.group({
     startHour: [
@@ -30,39 +38,58 @@ export class CreateSessionComponent implements OnInit{
       Validators.required
     ],
     capacity: [
-      [0], 
-      Validators.required
+      null, 
+      Validators.required,
     ],
     sessionDate: [
       null, 
       Validators.required
     ],
     className: [
-      '', 
+      "", 
       Validators.required
     ],
-  });
+  }, {validator: timeOrderValidator('startHour', 'endHour')});
 
-  ngOnInit(): void {
-    // You can perform any initialization logic here if needed
+  private loadClasses(): void {
+    const apiUrl = 'http://localhost:8080/api/v1/class/all';
+
+    this.http.get<any[]>(apiUrl).subscribe({
+      next: data  => {
+        this.classes = data;
+      },
+      error: err => {
+        console.error('Error fetching classes', err);
+      }
+    });
   }
 
   onSubmit() {
     if (this.form.valid) {
-      const sessionRequest = this.form.value as unknown as createSessionRequst;
-      console.log(sessionRequest)
+      const sessionRequest = this.form.value as createSessionRequst;
 
-    //   this.sessionService.createSession(sessionRequest).subscribe({
-    //     next: (data: any) => {
-    //       console.log('Response from server:', data);
-    //       console.log('Session created successfully', data);
-    //       this.isSuccessful = true;
-    //     },
-    //     error: (err: any) => {
-    //       console.error('Error creating session', err);
-    //       this.errorMessage = 'Error creating session. Please try again.'; // You can customize the error message
-    //     }
-    //   });
+      sessionRequest.startHour = this.formatDateTime(sessionRequest.sessionDate, sessionRequest.startHour);
+      sessionRequest.endHour = this.formatDateTime(sessionRequest.sessionDate, sessionRequest.endHour);
+      
+      this.sessionService.createSession(
+        sessionRequest.startHour, 
+        sessionRequest.endHour,
+        sessionRequest.capacity,
+        sessionRequest.sessionDate,
+        sessionRequest.className).subscribe({
+        next: (data: any) => {
+          console.log('Response from server:', data);
+          this.isSuccessful = true;
+        },
+        error: (err: any) => {
+          console.error('Error from server:', err);
+          this.errorMessage = err.error.message;
+        }
+      })
     }
+  }
+
+  private formatDateTime(date: string, time: string): string {
+    return `${date}T${time}:00`;
   }
 }
