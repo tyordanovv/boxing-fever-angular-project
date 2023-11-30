@@ -23,11 +23,6 @@
         </div>
   
         <div class="form-group">
-          <strong> ID: </strong>
-          <input formControlName="id" class="form-control" />
-        </div>
-  
-        <div class="form-group">
           <strong> First name: </strong>
           <input formControlName="firstName" class="form-control" />
         </div>
@@ -48,7 +43,7 @@
         </div>
   
         <div class="form-group">
-          <button (click)="save()" class="btn">Save</button>
+          <button (click)="save()" class="btn" [disabled]="!form.valid">Save</button>
         </div>
       </form> 
     </div>
