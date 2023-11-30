@@ -1,0 +1,33 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.trainer-info {
+  margin-top: 10px;
+}
+
+.trainer-details {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  display: none;
+}
+
+  .trainer-details:hover {
+    display: block;
+  }
