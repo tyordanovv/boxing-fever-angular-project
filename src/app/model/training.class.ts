@@ -1,10 +1,10 @@
 
-export class TrainingClass {
-  private id: number;
-  private className: string;
-  private place: string;
-  private durationInMinutes: number;
-  private description: string;
-  private category: string;
-  private trainers: Set<number>;
+export interface TrainingClass {
+  id: number;
+  className: string;
+  place: string;
+  durationInMinutes: number;
+  description: string;
+  category: string;
+  trainers: Set<number>;
 }

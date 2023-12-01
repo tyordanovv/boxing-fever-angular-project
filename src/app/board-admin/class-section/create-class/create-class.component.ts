@@ -1,7 +1,16 @@
+// create-class.component.ts
+
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ClassService } from '../_services/class.service';
-import { NewClassRequest } from '../models/new-class-request';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { ClassService } from '../../../_services/class.service';
+import { NewClassRequest } from '../../../model/new.class.request';
+import { TrainerModel } from '../../../model/trainer.model';
+
+function atLeastOneTrainer(control: AbstractControl): ValidationErrors | null {
+  const trainers = control.value as TrainerModel[];
+  return trainers && trainers.length > 0 ? null : { atLeastOneTrainer: true };
+}
 
 @Component({
   selector: 'app-create-class',
@@ -9,8 +18,15 @@ import { NewClassRequest } from '../models/new-class-request';
   styleUrls: ['./create-class.component.css']
 })
 export class CreateClassComponent implements OnInit {
+  createForm: FormGroup = this.formBuilder.group({
+    className: ['', [Validators.required]],
+    place: ['', [Validators.required]],
+    durationInMinutes: [0, [Validators.required, Validators.min(1)]],
+    description: ['', [Validators.required]],
+    category: ['', [Validators.required]],
+    trainers: this.formBuilder.array([]),
+  }, { validators: atLeastOneTrainer });
 
-  createForm: FormGroup;
   submitted = false;
 
   constructor(
@@ -19,14 +35,18 @@ export class CreateClassComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.createForm = this.formBuilder.group({
-      className: ['', [Validators.required]],
-      place: ['', [Validators.required]],
-      durationInMinutes: [0, [Validators.required, Validators.min(1)]],
-      description: ['', [Validators.required]],
-      category: ['', [Validators.required]],
-      trainers: [[]]
-    });
+    this.fetchAvailableTrainers();
+  }
+
+  fetchAvailableTrainers(): void {
+    this.classService.getAvailableTrainers().subscribe(
+      (trainers) => {
+        this.createForm.patchValue({ trainers });
+      },
+      (error) => {
+        console.error('Error fetching available trainers:', error);
+      }
+    );
   }
 
   onSubmit(): void {
@@ -35,14 +55,14 @@ export class CreateClassComponent implements OnInit {
       return;
     }
 
-    const request: NewClassRequest = {
-      className: this.createForm.value.className,
-      place: this.createForm.value.place,
-      durationInMinutes: this.createForm.value.durationInMinutes,
-      description: this.createForm.value.description,
-      category: this.createForm.value.category,
-      trainers: this.createForm.value.trainers
-    };
+    const request = new NewClassRequest(
+      this.createForm.value.className,
+      this.createForm.value.place,
+      this.createForm.value.durationInMinutes,
+      this.createForm.value.description,
+      this.createForm.value.category,
+      this.createForm.value.trainers.map((trainer: TrainerModel) => trainer.id)
+    );
 
     this.classService.createClass(request).subscribe(
       (response) => {

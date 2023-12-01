@@ -13,15 +13,15 @@
 
           <p class="card-text"><strong>Trainers:</strong></p>
           <ul>
-            <li *ngFor="let trainer of trainingClass.trainers">
+            <li *ngFor="let trainerId of trainingClass.trainers">
               <div class="trainer-info">
-                <a href="#" (click)="showTrainerDetails(trainer.id)">
-                  {{ trainer.name }}
+                <a href="#" (click)="toggleTrainerDetails(trainerId)">
+                  {{ trainerInfo[trainerId]?.name || 'Trainer' }}
                 </a>
-
-                <div class="trainer-details" *ngIf="showTrainerDetails[trainer.id]">
-                  <p><strong>ID:</strong> {{ trainer.id }}</p>
-                  <p><strong>Email:</strong> {{ trainer.email }}</p>
+                <div class="trainer-details" *ngIf="showTrainerDetails[trainerId]">
+                  <p><strong>ID:</strong> {{ trainerId }}</p>
+                  <p><strong>Name:</strong> {{ trainerInfo[trainerId]?.name || 'N/A' }}</p>
+                  <p><strong>Email:</strong> {{ trainerInfo[trainerId]?.email || 'N/A' }}</p>
                 </div>
               </div>
             </li>

@@ -1,8 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewClassRequest } from '/model/new-class-request';
-import { TrainingClass } from '/model/training-class';
+import { NewClassRequest } from '../model/new.class.request';
+import { TrainingClass } from '../model/training.class';
+import { TrainerModel } from '../model/trainer.model';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -11,23 +16,31 @@ export class ClassService {
 
   private readonly baseUrl = 'http://localhost:8080/api/v1/class';
   private readonly baseUrlTrainer = 'http://localhost:8080/api/v1/trainer';
-  const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+ 
 
   constructor(private http: HttpClient) { }
 
   getClasses(): Observable<TrainingClass[]> {
-    return this.http.get<TrainingClass[]>(`${this.baseUrl}/all-training-classes`, httpOptions);
+    return this.http.get<TrainingClass[]>(`${this.baseUrl}/all`, httpOptions);
   }
 
   createClass(request: NewClassRequest): Observable<string> {
-    return this.http.post<string>(`${this.baseUrl}`, request), httpOptions;
+    return this.http.post<string>(  // Provide the type parameter for post
+      `${this.baseUrl}`,
+      {
+        request
+      },
+      httpOptions
+    );
   }
 
-  getTrainer(id: string): Observable<any> {
-    return this.http.get(
-      this.baseUrlTrainer + id, httpOptions);
+  getTrainer(trainerId: number): Observable<TrainerModel> {
+    return this.http.get<TrainerModel>(`${this.baseUrlTrainer}/id/${trainerId}`, httpOptions);
   }
+
+  getAvailableTrainers(): Observable<TrainerModel[]> {
+    return this.http.get<TrainerModel[]>(`${this.baseUrlTrainer}/all/`, httpOptions);
+  }
+
 }
 

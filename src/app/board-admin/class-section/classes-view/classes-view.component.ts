@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ClassService } from '../_services/class.service';
-import { TrainingClass } from '../models/training-class';
-import { TrainerDto } from '../models/trainer-dto';
+import { ClassService } from '../../../_services/class.service';
+import { TrainingClass } from '../../../model/training.class';
+import { TrainerModel } from '../../../model/trainer.model';
 
 @Component({
   selector: 'app-classes-view',
@@ -11,7 +11,7 @@ import { TrainerDto } from '../models/trainer-dto';
 export class ClassesViewComponent implements OnInit {
 
   classes: TrainingClass[] = [];
-  trainerInfo: { [trainerId: number]: TrainerDto } = {};
+  trainerInfo: { [trainerId: number]: TrainerModel } = {};
   showTrainerDetails: { [trainerId: number]: boolean } = {};
 
   constructor(private classService: ClassService) { }
@@ -27,8 +27,8 @@ export class ClassesViewComponent implements OnInit {
 
         // Retrieve trainer information for each training class
         for (let trainingClass of this.classes) {
-          for (let trainer of trainingClass.trainers) {
-            this.fetchTrainerInfo(trainer.id);
+          for (let trainerId of trainingClass.trainers) {
+            this.fetchTrainerInfo(trainerId);
           }
         }
       },
@@ -49,7 +49,8 @@ export class ClassesViewComponent implements OnInit {
     );
   }
 
-  showTrainerDetails(trainerId: number): void {
+  // Toggle trainer details visibility
+  toggleTrainerDetails(trainerId: number): void {
     this.showTrainerDetails[trainerId] = !this.showTrainerDetails[trainerId];
   }
 }
