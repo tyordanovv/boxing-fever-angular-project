@@ -21,7 +21,16 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
-      this.user = this.storageService.getUser().user;
+      const id = this.storageService.getUser().user.id
+
+      this.userService.getUserProfile(id).subscribe({
+        next: data => {
+          this.user = data
+        },
+        error: err => {
+          this.errorMessage = err.error.message;
+        }
+      })
     }
   }
 
@@ -36,7 +45,7 @@ export class UserProfileComponent implements OnInit {
         const userId = this.user.id;
 
         this.userService.deleteUser(userId).subscribe({
-          next: rsp => {
+          next: data => {
             this.storageService.clean();
             this.reloadPage();
           },

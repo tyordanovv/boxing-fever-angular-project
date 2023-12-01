@@ -31,7 +31,7 @@ export class UserService {
       API_URL + id, httpOptions);
   }
 
-  updateUser(id: number | null, firstName: string | null, lastName: string | null, address:string | null, email: string | null): Observable<any>{
+  updateUser(id: number | null, firstName: string | null, lastName: string | null, email: string | null, address:string | null): Observable<any>{
     return this.http.post(
       API_URL + 'edit',
       {

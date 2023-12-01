@@ -27,7 +27,7 @@ export class UserEditReactiveComponent {
       Validators.required, 
       Validators.minLength(2)
     ]],
-    userEmail: ['', [
+    email: ['', [
       Validators.required,
       emailValidator()
     ]],
@@ -47,37 +47,27 @@ export class UserEditReactiveComponent {
     this.user = this.storageService.getUser().user
 
     this.form.patchValue(this.user);
-
-    this.form.valueChanges.subscribe((userForm) => {
-      console.log('user form changed:', userForm);
-    });
   }
 
   save(): void {
     const updatedUser = this.form.getRawValue();
-    const { id, userEmail, firstName, lastName ,address} = updatedUser;
-
-    console.log(id)
-    console.log(userEmail)
-    console.log(firstName)
-    console.log(lastName)
-    console.log(address)
+    const { id, email, firstName, lastName ,address} = updatedUser;
 
     this.userService.updateUser(
       id,
       firstName,
       lastName,
-      userEmail,
+      email,
       address
     ).subscribe({
-      next: (data: any) => {
+      next: data => {
         console.log('Response from server:', data);
         this.isSuccessful = true;
+        
       },
-      error: (err: any) => {
+      error: err => {
         console.error('Error from server:', err);
       }
     })
-    console.log('Updated user:', updatedUser);
   }
 }

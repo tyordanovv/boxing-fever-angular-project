@@ -35,10 +35,8 @@ import { ClassesViewComponent } from './board-admin/class-section/classes-view/c
     SessionSectionComponent,
     ClassSectionComponent,
     TrainerSectionComponent,
-    CreateSessionComponent,
     CreateClassComponent,
-    ClassesViewComponent
-
+    ClassesViewComponent,
   ],
   imports: [
     BrowserModule,

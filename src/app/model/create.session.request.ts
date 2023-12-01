@@ -2,8 +2,8 @@
 export interface createSessionRequst {
     className: string;
     capacity: number;
-    startHour: Date;
-    endHour: Date;
-    sessionDate: Date;
+    startHour: string;
+    endHour: string;
+    sessionDate: string;
   }
   
