@@ -1,0 +1,47 @@
+/* classes-view.component.css */
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.trainer-info {
+  margin-top: 10px;
+}
+
+.trainer-details {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  display: none;
+}
+
+.trainer-info:hover .trainer-details {
+  display: block;
+}

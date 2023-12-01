@@ -10,6 +10,8 @@ import { UserProfileComponent } from './profile/user-profile/user-profile.compon
 import { UserEditReactiveComponent } from './profile/user-edit-reactive.component/user-edit-reactive.component';
 import { SessionsViewComponent } from './board-admin/session-section/sessions-view/sessions-view.component';
 import { CreateSessionComponent } from './board-admin/session-section/create-session/create-session.component';
+import { ClassesViewComponent } from './board-admin/class-section/classes-view/classes-view.component';
+import { CreateClassComponent } from './board-admin/class-section/create-class/create-class.component';
 
 const routes: Routes = [
   { 
@@ -48,6 +50,14 @@ const routes: Routes = [
     path: 'session/create', 
     component: CreateSessionComponent
   },
+  {
+  path: 'classes',
+  component: ClassesViewComponent
+  },
+{
+  path: 'classes/new',
+  component: CreateClassComponent
+},
   { 
     path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

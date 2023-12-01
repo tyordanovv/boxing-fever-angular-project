@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { MatCardModule} from "@angular/material/card";
 import { TrainerSectionComponent } from './board-admin/trainer-section/trainer-section.component';
 import { ClassSectionComponent } from './board-admin/class-section/class-section.component';
 import { SessionSectionComponent } from './board-admin/session-section/session-section.component';
+import { CreateSessionComponent } from './board-admin/session-section/create-session/create-session.component';
 import { CreateClassComponent } from './board-admin/class-section/create-class/create-class.component';
 import { ClassesViewComponent } from './board-admin/class-section/classes-view/classes-view.component';
 
@@ -45,6 +46,7 @@ import { ClassesViewComponent } from './board-admin/class-section/classes-view/c
     MatDialogModule,
     MatSnackBarModule,
     MatCardModule,
+    ReactiveFormsModule
 
 
   ],
