@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { TrainerServiceService } from '../../_services/trainer.service.service';
+import { TrainerServiceService } from '../_services/trainer.service.service';
 import { MatDialog,  } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/util/confirmation-dialog/confirmation-dialog.component';
 
@@ -30,7 +30,7 @@ export class ViewTrainerComponent {
     );
   }
 
-  private confirmDelete(): void {
+  confirmDelete(): void {
     const message = 'Are you sure you want to delete the trainer?';
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: message 
