@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { TrainerServiceService } from '../_services/trainer.service.service';
+import { TrainerServiceService } from '../../_services/trainer.service.service';
 import { MatDialog,  } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/util/confirmation-dialog/confirmation-dialog.component';
 

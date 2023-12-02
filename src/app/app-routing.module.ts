@@ -12,7 +12,7 @@ import { SessionsViewComponent } from './board-admin/session-section/sessions-vi
 import { CreateSessionComponent } from './board-admin/session-section/create-session/create-session.component';
 import { ClassesViewComponent } from './board-admin/class-section/classes-view/classes-view.component';
 import { CreateClassComponent } from './board-admin/class-section/create-class/create-class.component';
-import { ViewTrainerComponent } from './view.trainer/view.trainer.component';
+import { ViewTrainerComponent } from './profile/view.trainer/view.trainer.component';
 import { EditTrainerComponent } from './edit.trainer/edit.trainer.component';
 
 const routes: Routes = [

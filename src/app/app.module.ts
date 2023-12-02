@@ -22,7 +22,7 @@ import { CreateSessionComponent } from './board-admin/session-section/create-ses
 import { CreateClassComponent } from './board-admin/class-section/create-class/create-class.component';
 import { ClassesViewComponent } from './board-admin/class-section/classes-view/classes-view.component';
 import { EditTrainerComponent } from './edit.trainer/edit.trainer.component';
-import { ViewTrainerComponent } from './view.trainer/view.trainer.component';
+import { ViewTrainerComponent } from './profile/view.trainer/view.trainer.component';
 
 @NgModule({
   declarations: [
