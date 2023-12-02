@@ -1,0 +1,21 @@
+<p>view.trainer works!</p>
+
+<div class="container">
+    <div class="trainer-info">
+      <h2>Trainer</h2>
+      <p><strong>First name:</strong> {{ trainer?.name }} </p>
+      <p><strong>Email:</strong> {{ trainer?.email }}</p>
+    </div>
+  
+    <div class="action-buttons">
+      <button class="btn btn-danger" (click)="confirmDelete()">Delete Profile</button>
+      <button
+        [routerLink]="[
+          '/profile/edit'
+        ]"
+        class="btn btn-default"
+      >
+        Edit Profile
+      </button>  
+    </div>
+</div>
