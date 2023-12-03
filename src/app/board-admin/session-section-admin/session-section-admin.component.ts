@@ -15,7 +15,4 @@ export class SessionSectionAdminComponent {
 
   }
 
-  onButtonClick(buttonText: string) {
-    alert(`${buttonText} clicked!`);
-  }
 }

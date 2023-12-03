@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import { sessionModel} from "../../../model/session.model";
 import { SessionService} from "../../../_services/session-service";
 import {ConfirmationDialogComponent} from "../../../util/confirmation-dialog/confirmation-dialog.component";
@@ -16,7 +16,7 @@ import {StorageService} from "../../../_services/storage.service";
 export class AllSessionsViewAdminComponent implements OnInit {
 
   @Input() sessions!: sessionModel[];
-  @Output() signUpClicked = new EventEmitter<void>();
+
 
   successMessages: { [classId: number]: string } = {};
   private dialog = inject(MatDialog);

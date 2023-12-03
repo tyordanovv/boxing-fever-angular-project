@@ -8,7 +8,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { UserEditReactiveComponent } from './profile/user-edit-reactive.component/user-edit-reactive.component';
-import { CreateSessionComponent } from './board-admin/session-section/create-session/create-session.component';
+import { CreateSessionComponent} from "./board-admin/session-section-admin/create-session/create-session.component";
 import { ClassesViewComponent } from './board-admin/class-section/classes-view/classes-view.component';
 import { CreateClassComponent } from './board-admin/class-section/create-class/create-class.component';
 import { ViewTrainerComponent } from './view.trainer/view.trainer.component';

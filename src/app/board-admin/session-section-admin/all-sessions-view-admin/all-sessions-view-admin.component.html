@@ -1,12 +1,12 @@
 
-<div *ngFor="let s of sessions">
+<div *ngFor="let s of sessions" class="session-card">
   <div>
     <h2>{{ s.className }}</h2>
     <p>Capacity: {{ s.capacity }}</p>
-    <p>Trainers: {{ s.trainers }}</p>
+    <p>Trainers: {{ s.trainers[0] }}</p>
     <p>Date: {{ s.sessionDate }}</p>
-    <p>Start Time: {{ s.startHour }}</p>
-    <p>End Time: {{ s.endHour }}</p>
+    <p>Start Time: {{ s.startHour | date:'shortTime' }}</p>
+    <p>End Time: {{ s.endHour | date:'shortTime'}}</p>
     <p></p>
     <div class="action-buttons">
       <button class="btn btn-danger" (click)="confirmDelete(s.id)">Delete Session</button>
