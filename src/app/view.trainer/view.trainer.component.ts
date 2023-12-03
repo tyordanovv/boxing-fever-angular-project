@@ -46,12 +46,16 @@ export class ViewTrainerComponent implements OnInit{
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.trainerService.deleteTrainer(trainerId).subscribe({
+          next: data => {
+            this.reloadPage();
+          },
           error: err => {
             this.errorMessage = err.error.message;
           }
         });
       }
     });
+    
   }
 
   reloadPage(): void {

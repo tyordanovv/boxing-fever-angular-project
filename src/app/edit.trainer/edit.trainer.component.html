@@ -1,3 +1,5 @@
+<div>
+<div>
 <form
       *ngIf="!isSuccessful"
       name="form"
@@ -50,10 +52,9 @@
     <div class="form-group">
         <button class="btn btn-primary btn-block">Register Trainer</button>
     </div>
-
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
-    </div>
-  
-
 </form>
+<div class="alert alert-success" *ngIf="isSuccessful">
+  Your registration is successful!
+</div>
+</div>
+</div>
