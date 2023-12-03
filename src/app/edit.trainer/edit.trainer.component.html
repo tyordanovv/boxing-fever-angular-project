@@ -1,4 +1,5 @@
 <form
+      *ngIf="!isSuccessful"
       name="form"
       (ngSubmit)="f.form.valid && onSubmit()"
       #f="ngForm"
@@ -48,6 +49,10 @@
 
     <div class="form-group">
         <button class="btn btn-primary btn-block">Register Trainer</button>
+    </div>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
     </div>
   
 
