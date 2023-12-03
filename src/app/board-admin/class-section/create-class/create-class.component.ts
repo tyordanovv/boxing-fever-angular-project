@@ -6,11 +6,23 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors }
 import { ClassService } from '../../../_services/class.service';
 import { NewClassRequest } from '../../../model/new.class.request';
 import { TrainerModel } from '../../../model/trainer.model';
+import { TrainerServiceService } from '../../../_services/trainer.service.service';
 
 function atLeastOneTrainer(control: AbstractControl): ValidationErrors | null {
   const trainers = control.value as TrainerModel[];
   return trainers && trainers.length > 0 ? null : { atLeastOneTrainer: true };
 }
+
+export function requiredValidator(control: AbstractControl): ValidationErrors | null {
+  return control.value?.trim() === '' ? { required: true } : null;
+}
+
+export function customPlaceValidator(control: AbstractControl): ValidationErrors | null {
+  const place = control.value?.trim();
+  return place === '' ? { place: 'Please enter a place.' } : null;
+}
+
+
 
 @Component({
   selector: 'app-create-class',
@@ -28,10 +40,12 @@ export class CreateClassComponent implements OnInit {
   }, { validators: atLeastOneTrainer });
 
   submitted = false;
+  trainers: TrainerModel[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
-    private classService: ClassService
+    private classService: ClassService,
+    private trainerService: TrainerServiceService
   ) { }
 
   ngOnInit(): void {
@@ -39,8 +53,9 @@ export class CreateClassComponent implements OnInit {
   }
 
   fetchAvailableTrainers(): void {
-    this.classService.getAvailableTrainers().subscribe(
+    this.trainerService.getTrainers().subscribe(
       (trainers) => {
+        this.trainers = trainers;
         this.createForm.patchValue({ trainers });
       },
       (error) => {

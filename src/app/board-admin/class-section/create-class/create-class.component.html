@@ -1,5 +1,3 @@
-<!-- create-class.component.html -->
-
 <div class="container">
   <h1>Create Class</h1>
 
@@ -24,6 +22,7 @@
       <textarea class="form-control" id="description" formControlName="description" rows="3" required></textarea>
     </div>
 
+
     <div class="form-group">
       <label for="category">Category</label>
       <select class="form-control" id="category" formControlName="category" required>
@@ -37,7 +36,7 @@
     <div class="form-group">
       <label for="trainers">Trainers</label>
       <select class="form-control" id="trainers" formControlName="trainers" multiple>
-        <option *ngFor="let trainer of (createForm.get('trainers')?.value ?? [])" [value]="trainer.id">
+        <option *ngFor="let trainer of trainers" [value]="trainer.id">
           {{ trainer.name }} ({{ trainer.email }})
         </option>
       </select>
