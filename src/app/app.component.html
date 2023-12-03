@@ -6,10 +6,10 @@
         <a href="/home" class="nav-link" routerLink="home">Home </a>
       </li>
       <li class="nav-item">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        <a href="/admin" class="nav-link" routerLink="admin" *ngIf="role === 'ROLE_ADMIN'">Admin Board</a>
       </li>
       <li class="nav-item">
-        <a href="/user" class="nav-link" routerLink="user">User Board</a>
+        <a href="/user" class="nav-link" routerLink="user" *ngIf="role === 'ROLE_USER'">User Board</a>
       </li>
     </ul>
 

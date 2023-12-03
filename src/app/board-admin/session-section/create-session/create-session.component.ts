@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { SessionService } from 'src/app/_services/session-service';// Update the path
 import { createSessionRequst } from 'src/app/model/create.session.request';
 import { timeOrderValidator } from 'src/app/util/validators/time.validator';
+import {TrainingClass} from "../../../model/training.class";
+import {TrainerModel} from "../../../model/trainer.model";
 
 @Component({
   selector: 'app-create-session',
@@ -16,7 +18,8 @@ import { timeOrderValidator } from 'src/app/util/validators/time.validator';
 export class CreateSessionComponent implements OnInit{
   isSuccessful = false;
   errorMessage = '';
-  classes: any[] = [];
+  classes: TrainingClass[] = [];
+  trainers: TrainerModel[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -25,38 +28,40 @@ export class CreateSessionComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.loadClasses(); 
+    this.loadClasses();
+    this.loadTrainers();
   }
 
   form = this.fb.group({
-    startHour: [
-      null, 
-      Validators.required
-    ],
-    endHour: [
-      null,
-      Validators.required
-    ],
-    capacity: [
-      null, 
-      Validators.required,
-    ],
-    sessionDate: [
-      null, 
-      Validators.required
-    ],
-    className: [
-      "", 
-      Validators.required
-    ],
+
+    startHour: [null, Validators.required],
+    endHour: [null, Validators.required],
+    capacity: [null, Validators.required,],
+    sessionDate: [null, Validators.required],
+    className: ["", Validators.required],
+    trainers: [null, Validators.required]
+
   }, {validator: timeOrderValidator('startHour', 'endHour')});
 
   private loadClasses(): void {
-    const apiUrl = 'http://localhost:8080/api/v1/class/all';
+    const classesUrl = 'http://localhost:8080/api/v1/class/all';
 
-    this.http.get<any[]>(apiUrl).subscribe({
+    this.http.get<TrainingClass[]>(classesUrl).subscribe({
       next: data  => {
         this.classes = data;
+      },
+      error: err => {
+        console.error('Error fetching classes', err);
+      }
+    });
+  }
+
+  private loadTrainers(): void {
+    const classesUrl = 'http://localhost:8080/api/v1/trainer/all';
+
+    this.http.get<TrainerModel[]>(classesUrl).subscribe({
+      next: data  => {
+        this.trainers = data;
       },
       error: err => {
         console.error('Error fetching classes', err);
@@ -70,9 +75,9 @@ export class CreateSessionComponent implements OnInit{
 
       sessionRequest.startHour = this.formatDateTime(sessionRequest.sessionDate, sessionRequest.startHour);
       sessionRequest.endHour = this.formatDateTime(sessionRequest.sessionDate, sessionRequest.endHour);
-      
+
       this.sessionService.createSession(
-        sessionRequest.startHour, 
+        sessionRequest.startHour,
         sessionRequest.endHour,
         sessionRequest.capacity,
         sessionRequest.sessionDate,

@@ -1,12 +1,5 @@
-<!-- user-profile.component.html -->
-<div class="container">
-  <div class="user-info">
-    <h2>User Profile</h2>
-    <p><strong>First name:</strong> {{ user?.firstName }} </p>
-    <p><strong>Last name:</strong> {{ user?.lastName }}</p>
-    <p><strong>Email:</strong> {{ user?.email }}</p>
-    <p><strong>Address:</strong> {{ user?.address }}</p>
-  </div>
+<div class="container card">
+  <app-user-info [user]="user"></app-user-info>
 
   <div class="action-buttons">
     <button class="btn btn-danger" (click)="confirmDelete()">Delete Profile</button>
@@ -14,7 +7,7 @@
       [routerLink]="[
         '/profile/edit'
       ]"
-      class="btn btn-default"
+      class="btn btn-primary"
     >
       Edit Profile
     </button>  

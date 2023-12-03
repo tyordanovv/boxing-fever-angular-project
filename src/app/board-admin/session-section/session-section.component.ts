@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { SessionService} from "../../_services/session-service";
 import {sessionModel} from "../../model/session.model";
+import {StorageService} from "../../_services/storage.service";
 
 
 
@@ -13,13 +14,17 @@ export class SessionSectionComponent {
   @Input() title: string = 'Session-Section';
   @Input() content: string = '';
 
+  isAdmin = false;
 
-  constructor(private sessionService: SessionService) {
 
+  constructor(private sessionService: SessionService, private storageService: StorageService) {
+    this.isAdmin = this.CheckRole();
   }
 
-  onButtonClick(buttonText: string) {
-    alert(`${buttonText} clicked!`);
+  CheckRole(): boolean {
+    if (this.storageService.getUser().role === 'ROLE_ADMIN')
+      return true;
+    else return false;
   }
 }
 

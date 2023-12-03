@@ -1,3 +1,5 @@
+<div>
+<div>
 <form
       *ngIf="!isSuccessful"
       name="form"
@@ -18,14 +20,15 @@
           maxlength="50"
           #name="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && name.errors}"
+          ngModel pattern="[a-zA-Z ]*"
         />
         <div class="invalid-feedback" *ngIf="name.errors && f.submitted">
           <div *ngIf="name.errors['required']">Name is required</div>
           <div *ngIf="name.errors['minlength']">
-            Firstname must be at least 3 characters
+            Name must be at least 3 characters
           </div>
           <div *ngIf="name.errors['maxlength']">
-            Firstname must be at most 50 characters
+            Name must be at most 50 characters
           </div>
         </div>
       </div>
@@ -40,20 +43,22 @@
           [(ngModel)]="form.email"
           required
           #email="ngModel"
+          ngModel pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/"
           [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
         />
-        <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
-          Email is required!
+        <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+          <div *ngIf="email.errors['pattern']">
+            E-Mail has to be valid!
+          </div>
         </div>
     </div>
 
     <div class="form-group">
-        <button class="btn btn-primary btn-block">Register Trainer</button>
+        <button class="btn btn-primary btn-block">Submit</button>
     </div>
-
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
-    </div>
-  
-
 </form>
+<div class="alert alert-success" *ngIf="isSuccessful">
+  Your registration is successful!
+</div>
+</div>
+</div>
