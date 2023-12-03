@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
 import { sessionModel} from "../../../model/session.model";
 import { SessionService} from "../../../_services/session-service";
 import {StorageService} from "../../../_services/storage.service";
+import {ConfirmationDialogComponent} from "../../../util/confirmation-dialog/confirmation-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-all-sessions-view',
@@ -16,8 +18,12 @@ export class AllSessionsViewComponent implements OnInit {
   @Output() signUpClicked = new EventEmitter<void>();
 
   successMessages: { [classId: number]: string } = {};
+  private dialog = inject(MatDialog);
+  errorMessage = '';
+  isAdmin = false;
 
   constructor( private sessionService: SessionService, private storageService: StorageService) {
+    this.isAdmin = this.CheckRole();
   }
 
   ngOnInit(): void {
@@ -64,5 +70,49 @@ export class AllSessionsViewComponent implements OnInit {
       return -1;
     }
 }
+
+  deleteSession(sessionID: number): void {
+    this.sessionService.deleteSession(sessionID).subscribe(
+      () => {
+        this.successMessages[sessionID] = 'Session was deleted successfully.'
+        console.log('Session was deleted successfully.')
+      },
+      (error => {
+        this.successMessages[sessionID] = 'Session could not be deleted.'
+        console.error(('Session could not be deleted.'))
+      })
+    )
+  }
+
+  confirmDelete(sessionID: number): void {
+    const message = 'Are you sure you want to delete this session?';
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: message
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.sessionService.deleteSession(sessionID).subscribe({
+          next: data => {
+            this.storageService.clean();
+            this.reloadPage();
+          },
+          error: err => {
+            this.errorMessage = err.error.message;
+          }
+        });
+      }
+    });
+  }
+
+  reloadPage(): void {
+    window.location.reload();
+  }
+
+  CheckRole(): boolean {
+    if (this.storageService.getUser().role === 'ROLE_ADMIN')
+      return true;
+    else return false;
+  }
 
 }

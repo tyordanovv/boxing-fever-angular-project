@@ -1,5 +1,5 @@
 
-<div *ngFor="let s of sessions">
+
 <div *ngFor="let s of sessions" class="session-card">
   <div>
     <h2>{{ s.className }}</h2>
@@ -9,7 +9,11 @@
     <p>Start Time: {{ s.startHour | date:'shortTime' }}</p>
     <p>End Time: {{ s.endHour | date:'shortTime' }}</p>
     <p></p>
-    <button (click)="subscribeToClass(s.id, 1) //getUserID() )">Subscribe</button>
+    <button *ngIf="!isAdmin" (click)="subscribeToClass(s.id, getUserID() )">Subscribe</button>
+    <p></p>
+    <div *ngIf="isAdmin" class="action-buttons">
+      <button class="btn btn-danger" (click)="confirmDelete(s.id)">Delete Session</button>
+    </div>
     <p></p>
     <div class="alert-success">{{ getSuccessMessage(s.id) }}</div>
     <p></p>

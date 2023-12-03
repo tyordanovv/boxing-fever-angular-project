@@ -7,6 +7,7 @@
   </mat-card-content>
   <mat-card-actions class="section-card-actions">
     <button class="btn-primary" [routerLink]="['/session/all']">See all</button>
+    <button *ngIf="isAdmin" class="btn-success" [routerLink]="['/session/create']">Add Session</button>
   </mat-card-actions>
 </mat-card>
 

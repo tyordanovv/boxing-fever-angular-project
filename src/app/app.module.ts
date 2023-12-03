@@ -26,8 +26,6 @@ import { AllSessionsViewComponent } from './board-admin/session-section/all-sess
 
 import { EditTrainerComponent } from './edit.trainer/edit.trainer.component';
 import { ViewTrainerComponent } from './view.trainer/view.trainer.component';
-import { AllSessionsViewAdminComponent } from "./board-admin/session-section-admin/all-sessions-view-admin/all-sessions-view-admin.component";
-import { SessionSectionAdminComponent } from './board-admin/session-section-admin/session-section-admin.component';
 import { UserInfoComponent } from './profile/user-info/user-info.component';
 
 
@@ -48,10 +46,8 @@ import { UserInfoComponent } from './profile/user-info/user-info.component';
     ClassesViewComponent,
 
     AllSessionsViewComponent,
-    AllSessionsViewAdminComponent,
     EditTrainerComponent,
     ViewTrainerComponent,
-    SessionSectionAdminComponent,
     UserInfoComponent,
 
   ],
