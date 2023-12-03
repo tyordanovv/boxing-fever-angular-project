@@ -48,6 +48,7 @@ export class AllSessionsViewComponent implements OnInit {
         const sessionToUpdate = this.sessions.find((session) => session.id === sessionId);
         if (sessionToUpdate){
           sessionToUpdate.capacity -= 1;
+
         }
         this.successMessages[sessionId] = 'Subscribed to class successfully.'
         console.log('Subscribed to class successfully.');

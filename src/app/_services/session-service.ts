@@ -30,7 +30,8 @@ export class SessionService {
         endHour,
         capacity,
         sessionDate,
-        className
+        className,
+       // trainer
       },
       httpOptions
     );
@@ -45,5 +46,18 @@ export class SessionService {
     const MapToUserUrl = `${SESSION_API}/${sessionID}/${userID}`;
     return this.http.post<void>(MapToUserUrl,{})};
 
-
+  // Not implemented in our Backend
+//updateSession(id: number,startHour:string, endHour:string, capacity:number, sessionDate:string, className:string): Observable<any>{
+//  const updateSessionUrl =${SESSION_API} + '/edit';
+//  return  this.http.post(updateSessionUrl,
+//    {
+//      id,
+//      startHour,
+//      endHour,
+//      capacity,
+//      sessionDate,
+//      className
+//    }
+//  )
+//}
 }

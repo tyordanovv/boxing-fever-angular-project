@@ -6,4 +6,3 @@ export interface createSessionRequst {
     endHour: string;
     sessionDate: string;
   }
-  
