@@ -1,0 +1,14 @@
+<p>all-sessions-view works!</p>
+
+
+<div *ngFor="let s of sessions">
+  <div>
+    <h2>{{ s.className }}</h2>
+    <p>Capacity: {{ s.capacity }}</p>
+    <p>Trainer: {{ s.trainers }}</p>
+    <p>Start Time: {{ s.startHour }}</p>
+    <p>End Time: {{ s.endHour }}</p>
+  </div>
+</div>
+
+

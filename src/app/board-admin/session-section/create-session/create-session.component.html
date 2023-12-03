@@ -1,8 +1,9 @@
 <p>create-session works!</p>
+
   <div class="alert alert-success" *ngIf="isSuccessful">
     <p>Session created successfully!</p>
   </div>
-  
+
   <div class="col-md-12">
     <div class="card card-container">
       <form [formGroup]="form" *ngIf="!isSuccessful" (ngSubmit)="onSubmit()">
@@ -40,9 +41,10 @@
           <button type="submit" class="btn btn-primary btn-block" [disabled]="!form.valid">Create Session</button>
         </div>
       </form>
-    
+
       <div *ngIf="errorMessage">
         <p>{{ errorMessage }}</p>
       </div>
     </div>
   </div>
+
