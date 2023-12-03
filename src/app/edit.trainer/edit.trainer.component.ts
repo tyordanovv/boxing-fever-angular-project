@@ -26,7 +26,7 @@ export class EditTrainerComponent implements OnInit{
   onSubmit(): void{
     const { name, email} = this.form;
   
-    this.trainerService.registerTrainer(name, email).subscribe({
+    this.trainerService.createTrainer(name, email).subscribe({
       next: (data: any) => {
         console.log('Response from server:', data);
         this.isSuccessful = true;

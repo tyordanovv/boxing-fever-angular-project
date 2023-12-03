@@ -20,7 +20,7 @@ export class TrainerServiceService {
       API_TRAINER + id, httpOptions);
   }
 
-  getAllTrainers(): Observable<any> {
+  getTrainers(): Observable<any> {
     return this.http.get(
       API_TRAINER + 'all', httpOptions
     );
@@ -31,7 +31,7 @@ export class TrainerServiceService {
       API_TRAINER + id, httpOptions);
   }
 
-  registerTrainer(name: string, email: string): Observable<any> {
+  createTrainer(name: string, email: string): Observable<any> {
     return this.http.post(
       API_TRAINER + 'register',
       {

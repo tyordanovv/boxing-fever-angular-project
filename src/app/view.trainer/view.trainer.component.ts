@@ -18,7 +18,7 @@ export class ViewTrainerComponent {
   ) {}
 
   private getAllTrainerInfo(trainerId: number): void {
-    this.trainerService.getAllTrainers().subscribe({
+    this.trainerService.getTrainers().subscribe({
       next: data => {
         this.trainer = data
       },
