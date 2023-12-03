@@ -4,13 +4,18 @@ import { ClassService } from '../../../_services/class.service';
 import { TrainerModel } from '../../../model/trainer.model';
 import { TrainerServiceService } from '../../../_services/trainer.service.service';
 import { NewClassRequest } from '../../../model/new.class.request';
+import { atLeastOneTrainerValidator } from './at-least-one-trainer.validator';
 
 @Component({
   selector: 'app-create-class',
   templateUrl: './create-class.component.html',
   styleUrls: ['./create-class.component.css']
 })
+
+
 export class CreateClassComponent implements OnInit {
+
+
   createForm!: FormGroup;
   submitted = false;
   trainers: TrainerModel[] = [];
@@ -28,7 +33,7 @@ export class CreateClassComponent implements OnInit {
       durationInMinutes: [0, [Validators.required, Validators.min(1)]],
       description: ['', [Validators.required]],
       category: ['', [Validators.required]],
-      trainers: [[]], // Initialize as an empty array
+      trainers: [[], [atLeastOneTrainerValidator]], // Initialize as an empty array
     });
 
     this.fetchAvailableTrainers();
@@ -47,10 +52,11 @@ export class CreateClassComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+    this.createForm.markAllAsTouched(); // Mark all controls as touched
+
     if (this.createForm.invalid) {
       return;
     }
-
     const request = new NewClassRequest(
       this.createForm.value.className,
       this.createForm.value.place,

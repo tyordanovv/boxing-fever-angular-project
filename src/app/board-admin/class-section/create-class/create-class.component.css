@@ -36,3 +36,22 @@ select {
   background-position: right 10px center;
   background-size: 10px 10px;
 }
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px; /* Add margin for spacing */
+}
+
+.trainer-checkbox {
+  margin-bottom: 10px;
+}
+
+.trainer-info {
+  margin-left: 5px;
+}
+
+input[type="checkbox"]:checked + .trainer-info {
+  color: blue; /* Change to your preferred color */
+  font-weight: bold;
+}

@@ -33,12 +33,16 @@
     </div>
 
     <div class="form-group">
-      <label for="trainers">Choose Trainers</label>
-      <select class="form-control" id="trainers" formControlName="trainers" multiple>
-        <option *ngFor="let trainer of trainers" [value]="trainer.id">
-          {{ trainer.name }} ({{ trainer.email }})
-        </option>
-      </select>
+      <label>Choose Trainers</label>
+      <div *ngFor="let trainer of trainers" class="trainer-checkbox">
+        <label>
+          <input type="checkbox" formControlName="trainers" [value]="trainer.id">
+          <span class="trainer-info">
+            {{ trainer.name }} ({{ trainer.email }})
+          </span>
+        </label>
+      </div>
+      <div *ngIf="createForm.get('trainers')!.hasError('atLeastOneTrainer')" class="error-message">Please select at least one trainer</div>
     </div>
 
     <button type="submit" class="btn btn-primary btn-block">Submit</button>
