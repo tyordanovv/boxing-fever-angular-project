@@ -36,7 +36,8 @@ export class CreateSessionComponent implements OnInit{
     endHour: [null, Validators.required],
     capacity: [null, Validators.required,],
     sessionDate: [null, Validators.required],
-    className: ["", Validators.required]
+    className: ["", Validators.required],
+
 
   }, {validator: timeOrderValidator('startHour', 'endHour')});
 
@@ -65,7 +66,8 @@ export class CreateSessionComponent implements OnInit{
         sessionRequest.endHour,
         sessionRequest.capacity,
         sessionRequest.sessionDate,
-        sessionRequest.className).subscribe({
+        sessionRequest.className
+      ).subscribe({
         next: (data: any) => {
           console.log('Response from server:', data);
           this.isSuccessful = true;

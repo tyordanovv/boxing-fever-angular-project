@@ -35,6 +35,8 @@ export class AllSessionsViewComponent implements OnInit {
       (sessions) => {
         console.log(sessions)
         this.sessions = sessions;
+        this.sortData();
+
       },
       (error) => {
         console.error('Error fetching training sessions:', error);
@@ -42,12 +44,18 @@ export class AllSessionsViewComponent implements OnInit {
     );
 
   }
+  sortData() {
+    this.sessions = this.sessions.slice()
+      .sort((a, b) =>
+        new Date(a.sessionDate).getTime() - new Date(b.sessionDate).getTime());
+  }
   subscribeToClass(sessionId: number, userID: number ): void {
     this.sessionService.subscribeToClass(sessionId, userID).subscribe(
       () => {
         const sessionToUpdate = this.sessions.find((session) => session.id === sessionId);
         if (sessionToUpdate){
           sessionToUpdate.capacity -= 1;
+
         }
         this.successMessages[sessionId] = 'Subscribed to class successfully.'
         console.log('Subscribed to class successfully.');
