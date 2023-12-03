@@ -8,7 +8,7 @@
     <p>{{ content }}</p>
   </mat-card-content>
   <mat-card-actions class="section-card-actions">
-    <button mat-button (click)="onButtonClick('See all')">See all</button>
-    <button mat-button (click)="onButtonClick('Add trainer')">Add trainer</button>
+    <button mat-button [routerLink]="['/trainer/all']">See all Trainer</button>
+    <button mat-button [routerLink]="['/trainer/create']">Add Trainer</button>
   </mat-card-actions>
 </mat-card>

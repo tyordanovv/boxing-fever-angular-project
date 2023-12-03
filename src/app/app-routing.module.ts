@@ -12,6 +12,8 @@ import { SessionsViewComponent } from './board-admin/session-section/sessions-vi
 import { CreateSessionComponent } from './board-admin/session-section/create-session/create-session.component';
 import { ClassesViewComponent } from './board-admin/class-section/classes-view/classes-view.component';
 import { CreateClassComponent } from './board-admin/class-section/create-class/create-class.component';
+import { ViewTrainerComponent } from './view.trainer/view.trainer.component';
+import { EditTrainerComponent } from './edit.trainer/edit.trainer.component';
 
 const routes: Routes = [
   { 
@@ -51,13 +53,21 @@ const routes: Routes = [
     component: CreateSessionComponent
   },
   {
-  path: 'classes',
-  component: ClassesViewComponent
+    path: 'classes',
+    component: ClassesViewComponent
+    },
+  {
+    path: 'classes/new',
+    component: CreateClassComponent
   },
-{
-  path: 'classes/new',
-  component: CreateClassComponent
-},
+  { 
+    path: 'trainer/all', 
+    component: ViewTrainerComponent
+  },
+  { 
+    path: 'trainer/create', 
+    component: EditTrainerComponent
+  },
   { 
     path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

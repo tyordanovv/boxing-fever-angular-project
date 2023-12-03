@@ -21,7 +21,11 @@ import { SessionSectionComponent } from './board-admin/session-section/session-s
 
 import { CreateClassComponent } from './board-admin/class-section/create-class/create-class.component';
 import { ClassesViewComponent } from './board-admin/class-section/classes-view/classes-view.component';
+
 import { AllSessionsViewComponent } from './board-admin/session-section/all-sessions-view/all-sessions-view.component';
+
+import { EditTrainerComponent } from './edit.trainer/edit.trainer.component';
+import { ViewTrainerComponent } from './view.trainer/view.trainer.component';
 
 
 @NgModule({
@@ -39,7 +43,10 @@ import { AllSessionsViewComponent } from './board-admin/session-section/all-sess
     TrainerSectionComponent,
     CreateClassComponent,
     ClassesViewComponent,
-    AllSessionsViewComponent
+
+    AllSessionsViewComponent,
+    EditTrainerComponent,
+    ViewTrainerComponent,
 
   ],
   imports: [
@@ -50,6 +57,7 @@ import { AllSessionsViewComponent } from './board-admin/session-section/all-sess
     MatDialogModule,
     MatSnackBarModule,
     MatCardModule,
+    FormsModule,
     ReactiveFormsModule
 
 
