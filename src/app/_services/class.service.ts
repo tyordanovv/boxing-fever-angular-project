@@ -39,7 +39,7 @@ export class ClassService {
   }
 
   getAvailableTrainers(): Observable<TrainerModel[]> {
-    return this.http.get<TrainerModel[]>(`${this.baseUrlTrainer}/all/`, httpOptions);
+    return this.http.get<TrainerModel[]>(`${this.baseUrlTrainer}/all`, httpOptions);
   }
 
 }
