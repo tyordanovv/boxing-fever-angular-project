@@ -13,7 +13,6 @@ export class EditTrainerComponent implements OnInit{
     email: null
   };
   isSuccessful = false;
-  isSignUpFailed = false;
   errorMessage = '';
 
   constructor(
@@ -30,12 +29,10 @@ export class EditTrainerComponent implements OnInit{
       next: (data: any) => {
         console.log('Response from server:', data);
         this.isSuccessful = true;
-        this.isSignUpFailed = false;
       },
       error: (err: any) => {
         console.error('Error from server:', err);
         this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
       }
     });
   }

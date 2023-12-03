@@ -1,10 +1,13 @@
 <p>view.trainer works!</p>
 
 <div class="container">
-    <div class="trainer-info">
-      <h2>Trainer</h2>
-      <p><strong>First name:</strong> {{ trainer?.name }} </p>
-      <p><strong>Email:</strong> {{ trainer?.email }}</p>
-      <button class="btn btn-danger" (click)="confirmDelete()">Delete Trainer</button>
+  <h1>Trainers</h1>
+  <br>
+    <div *ngFor="let t of trainers">
+      <div class="trainer-info">
+        <h3>{{ t.name }}</h3>
+        <p>E-Mail: {{ t.email }}</p>
+        <button class="btn btn-danger" (click)="confirmDelete(t.id)">Delete Trainer</button>
+      </div>
     </div>
 </div>

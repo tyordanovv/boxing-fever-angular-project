@@ -26,7 +26,7 @@ export class TrainerServiceService {
     );
   }
 
-  deleteTrainer(id: string): Observable<any> {
+  deleteTrainer(id: number): Observable<any> {
     return this.http.delete(
       API_TRAINER + id, httpOptions);
   }
