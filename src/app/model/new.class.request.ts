@@ -5,10 +5,10 @@ export class NewClassRequest {
   private durationInMinutes: number;
   private description: string;
   private category: string;
-  private trainers: string[];
+  private trainers: number[];
 
   // Assuming you have a constructor
-  constructor(className: string, place: string, durationInMinutes: number, description: string, category: string, trainers: string[]) {
+  constructor(className: string, place: string, durationInMinutes: number, description: string, category: string, trainers: number[]) {
     this.className = className;
     this.place = place;
     this.durationInMinutes = durationInMinutes;
@@ -17,5 +17,4 @@ export class NewClassRequest {
     this.trainers = trainers;
   }
 
-  // Other methods or properties...
 }

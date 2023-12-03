@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class ClassService {
 
-  private readonly baseUrl = 'http://localhost:8080/api/v1/class';
+  private readonly baseUrl = 'http://localhost:8080/api/v1/class/';
   private readonly baseUrlTrainer = 'http://localhost:8080/api/v1/trainer';
  
 
@@ -27,9 +27,7 @@ export class ClassService {
   createClass(request: NewClassRequest): Observable<string> {
     return this.http.post<string>(  // Provide the type parameter for post
       `${this.baseUrl}`,
-      {
-        request
-      },
+      request,
       httpOptions
     );
   }
