@@ -35,12 +35,19 @@ export class AllSessionsViewComponent implements OnInit {
       (sessions) => {
         console.log(sessions)
         this.sessions = sessions;
+        this.sortData();
+
       },
       (error) => {
         console.error('Error fetching training sessions:', error);
       }
     );
 
+  }
+  sortData() {
+    this.sessions = this.sessions.slice()
+      .sort((a, b) =>
+        new Date(a.sessionDate).getTime() - new Date(b.sessionDate).getTime());
   }
   subscribeToClass(sessionId: number, userID: number ): void {
     this.sessionService.subscribeToClass(sessionId, userID).subscribe(
