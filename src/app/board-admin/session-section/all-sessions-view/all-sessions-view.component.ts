@@ -24,6 +24,7 @@ export class AllSessionsViewComponent implements OnInit {
   fetchTrainingSessions(): void {
     this.sessionService.fetchAllSessions().subscribe(
       (sessions) => {
+        console.log(sessions)
         this.sessions = sessions;
       },
       (error) => {

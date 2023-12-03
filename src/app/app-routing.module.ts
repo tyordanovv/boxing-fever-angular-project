@@ -14,6 +14,7 @@ import { ClassesViewComponent } from './board-admin/class-section/classes-view/c
 import { CreateClassComponent } from './board-admin/class-section/create-class/create-class.component';
 import { ViewTrainerComponent } from './view.trainer/view.trainer.component';
 import { EditTrainerComponent } from './edit.trainer/edit.trainer.component';
+import { AllSessionsViewComponent } from './board-admin/session-section/all-sessions-view/all-sessions-view.component';
 
 const routes: Routes = [
   { 
@@ -46,7 +47,7 @@ const routes: Routes = [
   },
   { 
     path: 'session/all', 
-    component: SessionsViewComponent
+    component: AllSessionsViewComponent
   },
   { 
     path: 'session/create', 
