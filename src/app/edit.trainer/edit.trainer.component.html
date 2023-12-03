@@ -43,7 +43,6 @@
           [(ngModel)]="form.email"
           required
           #email="ngModel"
-          ngModel pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/"
           [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
         />
         <div class="invalid-feedback" *ngIf="email.errors && f.submitted">

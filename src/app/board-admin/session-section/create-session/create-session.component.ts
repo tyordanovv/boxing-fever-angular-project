@@ -19,7 +19,6 @@ export class CreateSessionComponent implements OnInit{
   isSuccessful = false;
   errorMessage = '';
   classes: TrainingClass[] = [];
-  trainers: TrainerModel[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +28,6 @@ export class CreateSessionComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadClasses();
-    this.loadTrainers();
   }
 
   form = this.fb.group({
@@ -38,8 +36,7 @@ export class CreateSessionComponent implements OnInit{
     endHour: [null, Validators.required],
     capacity: [null, Validators.required,],
     sessionDate: [null, Validators.required],
-    className: ["", Validators.required],
-    trainers: [null, Validators.required]
+    className: ["", Validators.required]
 
   }, {validator: timeOrderValidator('startHour', 'endHour')});
 
@@ -49,19 +46,6 @@ export class CreateSessionComponent implements OnInit{
     this.http.get<TrainingClass[]>(classesUrl).subscribe({
       next: data  => {
         this.classes = data;
-      },
-      error: err => {
-        console.error('Error fetching classes', err);
-      }
-    });
-  }
-
-  private loadTrainers(): void {
-    const classesUrl = 'http://localhost:8080/api/v1/trainer/all';
-
-    this.http.get<TrainerModel[]>(classesUrl).subscribe({
-      next: data  => {
-        this.trainers = data;
       },
       error: err => {
         console.error('Error fetching classes', err);
