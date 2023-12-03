@@ -21,7 +21,7 @@ export class ClassService {
   constructor(private http: HttpClient) { }
 
   getClasses(): Observable<TrainingClass[]> {
-    return this.http.get<TrainingClass[]>(`${this.baseUrl}/all`, httpOptions);
+    return this.http.get<TrainingClass[]>(`${this.baseUrl}all`, httpOptions);
   }
 
   createClass(request: NewClassRequest): Observable<string> {
