@@ -1,3 +1,4 @@
+import { TrainerModel } from "./trainer.model";
 
 export interface TrainingClass {
   id: number;
@@ -6,5 +7,5 @@ export interface TrainingClass {
   durationInMinutes: number;
   description: string;
   category: string;
-  trainers: Set<number>;
+  trainers: TrainerModel[];
 }

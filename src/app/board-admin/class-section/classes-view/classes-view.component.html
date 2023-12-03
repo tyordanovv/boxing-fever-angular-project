@@ -1,32 +1,23 @@
 <div class="container">
-  <h1>Available Classes</h1>
+<h1>Available Classes</h1>
 
-  <div class="row">
-    <div class="col-md-4" *ngFor="let trainingClass of classes">
-      <div class="card">
-        <div class="card-header">{{ trainingClass.className }}</div>
-        <div class="card-body">
-          <p class="card-text"><strong>Place:</strong> {{ trainingClass.place }}</p>
-          <p class="card-text"><strong>Duration:</strong> {{ trainingClass.durationInMinutes }} minutes</p>
-          <p class="card-text"><strong>Description:</strong> {{ trainingClass.description }}</p>
-          <p class="card-text"><strong>Category:</strong> {{ trainingClass.category }}</p>
+<div class="row">
+  <div class="col-md-4" *ngFor="let trainingClass of classes">
+    <div class="card">
+      <div class="card-header">{{ trainingClass.className }}</div>
+      <div class="card-body">
+        <p class="card-text"><strong>Place:</strong> {{ trainingClass.place }}</p>
+        <p class="card-text"><strong>Duration:</strong> {{ trainingClass.durationInMinutes }} minutes</p>
+        <p class="card-text"><strong>Description:</strong> {{ trainingClass.description }}</p>
+        <p class="card-text"><strong>Category:</strong> {{ trainingClass.category }}</p>
 
-          <p class="card-text"><strong>Trainers:</strong></p>
-          <ul>
-            <li *ngFor="let trainerId of trainingClass.trainers">
-              <div class="trainer-info">
-                <a href="#" (click)="toggleTrainerDetails(trainerId)">
-                  {{ trainerInfo[trainerId]?.name || 'Trainer' }}
-                </a>
-                <div class="trainer-details" *ngIf="showTrainerDetails[trainerId]">
-                  <p><strong>ID:</strong> {{ trainerId }}</p>
-                  <p><strong>Name:</strong> {{ trainerInfo[trainerId]?.name || 'N/A' }}</p>
-                  <p><strong>Email:</strong> {{ trainerInfo[trainerId]?.email || 'N/A' }}</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <p class="card-text"><strong>Trainers:</strong></p>
+        <ul>
+          <li *ngFor="let trainer of trainingClass.trainers">
+            <p><strong>Name:</strong> {{ trainer.name }}</p>
+            <p><strong>Email:</strong> {{ trainer.email }}</p>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

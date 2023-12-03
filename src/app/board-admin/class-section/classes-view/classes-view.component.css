@@ -45,3 +45,43 @@ ul {
 .trainer-info:hover .trainer-details {
   display: block;
 }
+.trainer-details-tooltip {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+  .trainer-details-tooltip:after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    opacity: 0.5;
+  }
+
+  .trainer-details-tooltip:hover:after {
+    opacity: 1;
+  }
+
+  .trainer-details-tooltip span {
+    position: absolute;
+    bottom: -5px;
+    left: 10px;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .trainer-details-tooltip:hover span {
+    visibility: visible;
+    opacity: 1;
+  }
