@@ -1,24 +1,36 @@
 <div class="container">
-<h1>Available Classes</h1>
+  <h1>Available Classes</h1>
 
-<div class="row">
-  <div class="col-md-4" *ngFor="let trainingClass of classes">
-    <div class="card">
-      <div class="card-header">{{ trainingClass.className }}</div>
-      <div class="card-body">
-        <p class="card-text"><strong>Place:</strong> {{ trainingClass.place }}</p>
-        <p class="card-text"><strong>Duration:</strong> {{ trainingClass.durationInMinutes }} minutes</p>
-        <p class="card-text"><strong>Description:</strong> {{ trainingClass.description }}</p>
-        <p class="card-text"><strong>Category:</strong> {{ trainingClass.category }}</p>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let trainingClass of classes">
+      <div class="card">
+        <div class="card-header">{{ trainingClass.className }}</div>
+        <div class="card-body">
+          <p class="card-text"><strong>Place:</strong> {{ trainingClass.place }}</p>
+          <p class="card-text">
+            <strong>Duration:</strong> {{ trainingClass.durationInMinutes }} minutes
+          </p>
+          <p class="card-text"><strong>Description:</strong> {{ trainingClass.description }}</p>
+          <p class="card-text"><strong>Category:</strong> {{ trainingClass.category }}</p>
 
-        <p class="card-text"><strong>Trainers:</strong></p>
-        <ul>
-          <li *ngFor="let trainer of trainingClass.trainers">
-            <p><strong>Name:</strong> {{ trainer.name }}</p>
-            <p><strong>Email:</strong> {{ trainer.email }}</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+          <div class="trainer-list">
+            <h6 class="card-subheading">Trainers:</h6>
+            <div class="trainer-grid">
+              <div class="trainer-item" *ngFor="let trainer of trainingClass.trainers">
+                <div class="trainer-info">
+                  <div class="trainer-name">
+                    <strong>{{ trainer.name }}</strong>
+                    <button class="trainer-details-btn" (click)="openTrainerDetails(trainer)">Show Info</button>
+                  </div>
+
+                  <div class="trainer-details-popup" *ngIf="selectedTrainer === trainer">
+                    <div class="trainer-details-content">
+                      <p><strong>ID:</strong> {{ trainer.id }}</p>
+                      <p><strong>Email:</strong> {{ trainer.email }}</p>
+                    </div>
+                    <button class="trainer-details-close" (click)="selectedTrainer = null">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>

@@ -8,16 +8,10 @@ import { TrainerModel } from '../../../model/trainer.model';
   templateUrl: './classes-view.component.html',
   styleUrls: ['./classes-view.component.css']
 })
-export
-
-  class
-
-  ClassesViewComponent
-
-  implements OnInit {
+export class ClassesViewComponent implements OnInit {
 
   classes: TrainingClass[] = [];
-  selectedTrainer: TrainerModel | null = null; // Initialize `selectedTrainer` to null
+  selectedTrainer: TrainerModel | null = null;
 
   constructor(private classService: ClassService) { }
 
@@ -37,6 +31,8 @@ export
   }
 
   openTrainerDetails(trainer: TrainerModel): void {
-    this.selectedTrainer = trainer; // Set `selectedTrainer` to the clicked trainer
+    // Implement logic to display trainer details (modal or tooltip)
+    this.selectedTrainer = trainer;
+    console.log('Trainer details:', trainer);
   }
 }
