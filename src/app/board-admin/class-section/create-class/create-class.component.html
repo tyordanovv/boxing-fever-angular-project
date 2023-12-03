@@ -5,21 +5,25 @@
     <div class="form-group">
       <label for="className">Class Name</label>
       <input type="text" class="form-control" id="className" formControlName="className">
+      <div *ngIf="createForm.get('className')!.hasError('required')" class="error-message">Class Name is required</div>
     </div>
 
     <div class="form-group">
       <label for="place">Place</label>
       <input type="text" class="form-control" id="place" formControlName="place">
+      <div *ngIf="createForm.get('place')!.hasError('required')" class="error-message">Place is required</div>
     </div>
 
     <div class="form-group">
       <label for="durationInMinutes">Duration (in minutes)</label>
       <input type="number" class="form-control" id="durationInMinutes" formControlName="durationInMinutes">
+      <div *ngIf="createForm.get('durationInMinutes')!.hasError('required')" class="error-message">Duration is required</div>
     </div>
 
     <div class="form-group">
       <label for="description">Description</label>
       <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
+      <div *ngIf="createForm.get('description')!.hasError('required')" class="error-message">Description is required</div>
     </div>
 
     <div class="form-group">
@@ -30,21 +34,20 @@
         <option value="YOGA">Yoga</option>
         <option value="KICKBOXEN">Kickboxen</option>
       </select>
+      <div *ngIf="createForm.get('category')!.hasError('required')" class="error-message">Category is required</div>
     </div>
 
     <div class="form-group">
-      <label>Choose Trainers</label>
-      <div *ngFor="let trainer of trainers" class="trainer-checkbox">
-        <label>
-          <input type="checkbox" formControlName="trainers" [value]="trainer.id">
-          <span class="trainer-info">
-            {{ trainer.name }} ({{ trainer.email }})
-          </span>
-        </label>
-      </div>
-      <div *ngIf="createForm.get('trainers')!.hasError('atLeastOneTrainer')" class="error-message">Please select at least one trainer</div>
+      <label for="trainers">Choose Trainers</label>
+      <select class="form-control" id="trainers" formControlName="trainers" multiple>
+        <option *ngFor="let trainer of trainers" [value]="trainer.id" [selected]="createForm.value.trainers.includes(trainer.id)">
+          {{ trainer.name }} ({{ trainer.email }})
+        </option>
+      </select>
+      <div *ngIf="createForm.get('trainers')?.hasError('atLeastOneTrainer')" class="error-message">Please select at least one trainer</div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="!createForm.valid">Submit</button>
+
   </form>
 </div>

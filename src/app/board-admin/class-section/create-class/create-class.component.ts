@@ -33,7 +33,7 @@ export class CreateClassComponent implements OnInit {
       durationInMinutes: [0, [Validators.required, Validators.min(1)]],
       description: ['', [Validators.required]],
       category: ['', [Validators.required]],
-      trainers: [[], [atLeastOneTrainerValidator]], // Initialize as an empty array
+      trainers: [[], [atLeastOneTrainerValidator]],
     });
 
     this.fetchAvailableTrainers();
@@ -43,20 +43,26 @@ export class CreateClassComponent implements OnInit {
     this.trainerService.getTrainers().subscribe(
       (trainers) => {
         this.trainers = trainers;
+
+        // Patch the selected trainers into the form control
+        const trainersControl = this.createForm.get('trainers');
+        if (trainersControl) {
+          const selectedTrainers = trainersControl.value;
+          const validSelectedTrainers = selectedTrainers.filter((id: number) =>
+            this.trainers.some((trainer) => trainer.id === id)
+          );
+          trainersControl.patchValue(validSelectedTrainers);
+        }
       },
       (error) => {
         console.error('Error fetching available trainers:', error);
       }
     );
   }
-
   onSubmit(): void {
     this.submitted = true;
     this.createForm.markAllAsTouched(); // Mark all controls as touched
 
-    if (this.createForm.invalid) {
-      return;
-    }
     const request = new NewClassRequest(
       this.createForm.value.className,
       this.createForm.value.place,
@@ -65,15 +71,19 @@ export class CreateClassComponent implements OnInit {
       this.createForm.value.category,
       this.createForm.value.trainers
     );
-
+  
     this.classService.createClass(request).subscribe(
       (response) => {
         console.log('Class created successfully:', response);
         this.submitted = false;
         this.createForm.reset();
+
+        // Display a confirmation message
+        alert('Class has been created!');
       },
       (error) => {
         console.error('Error creating class:', error);
+        
       }
     );
   }
