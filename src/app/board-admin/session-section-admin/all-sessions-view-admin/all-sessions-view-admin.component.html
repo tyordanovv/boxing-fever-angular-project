@@ -1,4 +1,3 @@
-<p>all-sessions-view works!</p>
 
 <div *ngFor="let s of sessions">
   <div>
@@ -9,7 +8,9 @@
     <p>Start Time: {{ s.startHour }}</p>
     <p>End Time: {{ s.endHour }}</p>
     <p></p>
-    <button (click)="subscribeToClass(s.id, 1) //getUserID() )">Subscribe</button>
+    <div class="action-buttons">
+      <button class="btn btn-danger" (click)="confirmDelete(s.id)">Delete Session</button>
+    </div>
     <p></p>
     <div class="success-message">{{ getSuccessMessage(s.id) }}</div>
     <p></p>
