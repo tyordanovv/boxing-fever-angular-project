@@ -28,6 +28,7 @@ export class AppComponent {
     if (this.isLoggedIn) {
       const user = this.storageService.getUser();
       this.role = user.role;
+      console.log(this.role)
       this.token = user.accessToken;
     }
   }
