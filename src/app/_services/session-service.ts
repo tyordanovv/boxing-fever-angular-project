@@ -35,4 +35,15 @@ export class SessionService {
       httpOptions
     );
   }
+
+  deleteSession(id: number): Observable<any>{
+    const deleteUrl = `${SESSION_API}/${id}`;
+    return this.http.delete(deleteUrl);
+  }
+
+  subscribeToClass(sessionID: number, userID: number): Observable<void>{
+    const MapToUserUrl = `${SESSION_API}/${sessionID}/${userID}`;
+    return this.http.post<void>(MapToUserUrl,{})};
+
+
 }

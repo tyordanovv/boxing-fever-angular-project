@@ -1,5 +1,6 @@
 
 export interface sessionModel {
+  id: number;
   className: string;
   capacity: number;
   startHour: Date;
