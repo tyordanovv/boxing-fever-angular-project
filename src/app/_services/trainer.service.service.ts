@@ -33,7 +33,7 @@ export class TrainerServiceService {
 
   createTrainer(name: string, email: string): Observable<any> {
     return this.http.post(
-      API_TRAINER + 'register',
+      API_TRAINER,
       {
         name,
         email,
