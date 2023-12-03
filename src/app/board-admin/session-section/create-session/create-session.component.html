@@ -1,11 +1,9 @@
-<p>create-session works!</p>
-
-  <div class="alert alert-success" *ngIf="isSuccessful">
+ <div class="alert alert-success" *ngIf="isSuccessful">
     <p>Session created successfully!</p>
   </div>
 
   <div class="col-md-12">
-    <div class="card card-container">
+    <div class="card-container">
       <form [formGroup]="form" *ngIf="!isSuccessful" (ngSubmit)="onSubmit()">
         <div *ngIf="form.hasError('timeOrder')">
           <p class="text-danger">Start Hour must be before End Hour.</p>
