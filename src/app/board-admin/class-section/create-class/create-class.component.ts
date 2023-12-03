@@ -60,31 +60,37 @@ export class CreateClassComponent implements OnInit {
     );
   }
   onSubmit(): void {
-    this.submitted = true;
-    this.createForm.markAllAsTouched(); // Mark all controls as touched
+    // Display a confirmation dialog
+    const isConfirmed = window.confirm('Do you want to create this class?');
 
-    const request = new NewClassRequest(
-      this.createForm.value.className,
-      this.createForm.value.place,
-      this.createForm.value.durationInMinutes,
-      this.createForm.value.description,
-      this.createForm.value.category,
-      this.createForm.value.trainers
-    );
-  
-    this.classService.createClass(request).subscribe(
-      (response) => {
-        console.log('Class created successfully:', response);
-        this.submitted = false;
-        this.createForm.reset();
+    // If user confirms, proceed with the submission
+    if (isConfirmed) {
+      this.submitted = true;
+      this.createForm.markAllAsTouched(); // Mark all controls as touched
 
-        // Display a confirmation message
-        alert('Class has been created!');
-      },
-      (error) => {
-        console.error('Error creating class:', error);
-        
-      }
-    );
+      const request = new NewClassRequest(
+        this.createForm.value.className,
+        this.createForm.value.place,
+        this.createForm.value.durationInMinutes,
+        this.createForm.value.description,
+        this.createForm.value.category,
+        this.createForm.value.trainers
+      );
+
+      this.classService.createClass(request).subscribe(
+        (response) => {
+          console.log('Class created successfully:', response);
+          this.submitted = false;
+          this.createForm.reset();
+
+          // Display a confirmation message
+          alert('Class has been created!');
+        },
+        (error) => {
+          console.error('Error creating class:', error);
+          // You can handle error cases here
+        }
+      );
+    }
   }
 }
