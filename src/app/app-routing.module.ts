@@ -14,6 +14,7 @@ import { CreateClassComponent } from './board-admin/class-section/create-class/c
 import { ViewTrainerComponent } from './view.trainer/view.trainer.component';
 import { EditTrainerComponent } from './edit.trainer/edit.trainer.component';
 import { AllSessionsViewComponent } from './board-admin/session-section/all-sessions-view/all-sessions-view.component';
+import { UpdateTrainerComponent } from './update.trainer/update.trainer.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,10 @@ const routes: Routes = [
   {
     path: 'trainer/create',
     component: EditTrainerComponent
+  },
+  {
+    path: 'trainer/edit',
+    component: UpdateTrainerComponent
   },
   {
     path: '', redirectTo: 'home', pathMatch: 'full' }

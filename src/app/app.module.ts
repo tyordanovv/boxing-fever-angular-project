@@ -28,6 +28,7 @@ import { AllSessionsViewComponent } from './board-admin/session-section/all-sess
 import { EditTrainerComponent } from './edit.trainer/edit.trainer.component';
 import { ViewTrainerComponent } from './view.trainer/view.trainer.component';
 import { UserInfoComponent } from './profile/user-info/user-info.component';
+import { UpdateTrainerComponent } from './update.trainer/update.trainer.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { UserInfoComponent } from './profile/user-info/user-info.component';
     EditTrainerComponent,
     ViewTrainerComponent,
     UserInfoComponent,
+    UpdateTrainerComponent,
 
   ],
   imports: [

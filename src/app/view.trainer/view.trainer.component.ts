@@ -17,6 +17,10 @@ export class ViewTrainerComponent implements OnInit{
   @Input()
   trainers!: TrainerModel[];
 
+  onButtonClick(buttonText: string) {
+    alert(`${buttonText} clicked!`);
+  }
+
   constructor( 
     private trainerService: TrainerServiceService,
   ) {}

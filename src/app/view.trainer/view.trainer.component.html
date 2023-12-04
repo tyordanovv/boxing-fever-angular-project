@@ -5,7 +5,8 @@
       <div class="trainer-info">
         <h3>{{ t.name }}</h3>
         <p>E-Mail: {{ t.email }}</p>
-        <button class="btn btn-danger" (click)="confirmDelete(t.id)">Delete Trainer</button>
+        <button class="btn-danger" (click)="confirmDelete(t.id)">Delete Trainer</button>
+        <button class="btn-primary" mat-button [routerLink]="['/trainer/edit']">Edit Trainer</button>
       </div>
       <br>
     </div>

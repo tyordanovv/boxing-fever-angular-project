@@ -41,4 +41,16 @@ export class TrainerServiceService {
       httpOptions
     );
   }
+
+  updateTrainer(id: number | null, name: string | null, email: string | null): Observable<any>{
+    return this.http.post(
+      API_TRAINER + 'edit',
+      {
+        id,
+        name,
+        email,
+      },
+      httpOptions
+    )
+  }
 }
