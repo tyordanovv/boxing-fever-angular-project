@@ -14,8 +14,7 @@ import {MatDialog} from "@angular/material/dialog";
 
 export class AllSessionsViewComponent implements OnInit {
 
-  @Input() sessions!: sessionModel[];
-  @Output() signUpClicked = new EventEmitter<void>();
+  sessions!: sessionModel[];
 
   successMessages: { [classId: number]: string } = {};
   private dialog = inject(MatDialog);
@@ -45,7 +44,7 @@ export class AllSessionsViewComponent implements OnInit {
 
   }
   sortData() {
-    this.sessions = this.sessions.slice()
+    this.sessions = this.sessions
       .sort((a, b) =>
         new Date(a.sessionDate).getTime() - new Date(b.sessionDate).getTime());
   }
@@ -55,6 +54,9 @@ export class AllSessionsViewComponent implements OnInit {
         const sessionToUpdate = this.sessions.find((session) => session.id === sessionId);
         if (sessionToUpdate){
           sessionToUpdate.capacity -= 1;
+
+          // Not implemented in our backend
+          //this.sessionService.updateSession(sessionToUpdate.id, sessionToUpdate.capacity)
 
         }
         this.successMessages[sessionId] = 'Subscribed to class successfully.'
@@ -78,7 +80,7 @@ export class AllSessionsViewComponent implements OnInit {
       return -1;
     }
 }
-
+  // Delete currently not working because of a Foreign Key constraint in our backend
   deleteSession(sessionID: number): void {
     this.sessionService.deleteSession(sessionID).subscribe(
       () => {
