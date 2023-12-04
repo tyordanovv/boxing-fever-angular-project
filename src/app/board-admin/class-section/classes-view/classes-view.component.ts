@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ClassService } from '../../../_services/class.service';
 import { TrainingClass } from '../../../model/training.class';
 import { TrainerModel } from '../../../model/trainer.model';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ConfirmationDialogComponent } from '../../../util/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-classes-view',
@@ -13,7 +17,7 @@ export class ClassesViewComponent implements OnInit {
   classes: TrainingClass[] = [];
   selectedTrainer: TrainerModel | null = null;
 
-  constructor(private classService: ClassService) { }
+  constructor(private classService: ClassService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.fetchClasses();
@@ -25,14 +29,49 @@ export class ClassesViewComponent implements OnInit {
         this.classes = response;
       },
       (error) => {
-        console.error('Error fetching classes:', error);
+        this.displayErrorMessage('Error fetching classes: ' + error.message);
       }
     );
   }
 
   openTrainerDetails(trainer: TrainerModel): void {
-    // Implement logic to display trainer details (modal or tooltip)
+    // Implement logic to display trainer details 
     this.selectedTrainer = trainer;
     console.log('Trainer details:', trainer);
+  }
+
+  deleteClass(classID: number): void {
+    const confirmationMessage = 'Are you sure you want to delete this class?';
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: confirmationMessage
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.classService.deleteClass(classID).subscribe({
+          next: () => {
+            this.fetchClasses();
+            this.displaySuccessMessage('Class was deleted successfully.');
+          },
+          error: (error) => {
+            this.displayErrorMessage('Error deleting class: ' + error.message);
+          }
+        });
+      }
+    });
+  }
+
+  displayErrorMessage(errorMessage: string): void {
+    this.snackBar.open(errorMessage, 'Error', {
+      duration: 3000,
+      panelClass: ['snackbar-error'],
+    });
+  }
+
+  displaySuccessMessage(successMessage: string): void {
+    this.snackBar.open(successMessage, 'Success', {
+      duration: 3000,
+      panelClass: ['snackbar-success'],
+    });
   }
 }

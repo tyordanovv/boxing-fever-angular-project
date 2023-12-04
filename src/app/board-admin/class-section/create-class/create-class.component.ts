@@ -5,6 +5,8 @@ import { TrainerModel } from '../../../model/trainer.model';
 import { TrainerServiceService } from '../../../_services/trainer.service.service';
 import { NewClassRequest } from '../../../model/new.class.request';
 import { atLeastOneTrainerValidator } from './at-least-one-trainer.validator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-class',
@@ -23,14 +25,16 @@ export class CreateClassComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private classService: ClassService,
-    private trainerService: TrainerServiceService
+    private trainerService: TrainerServiceService,
+    private snackBar: MatSnackBar
   ) { }
+
 
   ngOnInit(): void {
     this.createForm = this.formBuilder.group({
       className: ['', [Validators.required]],
       place: ['', [Validators.required]],
-      durationInMinutes: [0, [Validators.required, Validators.min(1)]],
+      durationInMinutes: [0, [Validators.required, Validators.min(20)]],
       description: ['', [Validators.required]],
       category: ['', [Validators.required]],
       trainers: [[], [atLeastOneTrainerValidator]],
@@ -63,7 +67,7 @@ export class CreateClassComponent implements OnInit {
     // Display a confirmation dialog
     const isConfirmed = window.confirm('Do you want to create this class?');
 
-    // If user confirms, proceed with the submission
+    // If the user confirms, proceed with the submission
     if (isConfirmed) {
       this.submitted = true;
       this.createForm.markAllAsTouched(); // Mark all controls as touched
@@ -78,19 +82,50 @@ export class CreateClassComponent implements OnInit {
       );
 
       this.classService.createClass(request).subscribe(
-        (response) => {
+        (response: any) => {
           console.log('Class created successfully:', response);
+
+          // Check if the response is truthy (exists)
+          if (response) {
+            // Handle the success case for an HTTP response
+            this.snackBar.open('Class has been created!', 'Success', {
+              duration: 3000,
+              panelClass: ['snackbar-success'],
+            });
+          } else {
+            // Handle other cases if needed
+            console.warn('Unexpected response:', response);
+          }
+
           this.submitted = false;
           this.createForm.reset();
-
-          // Display a confirmation message
-          alert('Class has been created!');
         },
         (error) => {
           console.error('Error creating class:', error);
-          // You can handle error cases here
+
+         
+          if (error instanceof HttpErrorResponse) {
+       
+            this.displayErrorMessage(`Error creating class. Status: ${error.status}. Message: ${error.error}`);
+          } else {
+            this.displayErrorMessage('An unexpected error occurred.');
+          }
         }
       );
     }
   }
+  displayErrorMessage(errorMessage: string): void {
+    this.snackBar.open(errorMessage, 'Error', {
+      duration: 5000,
+      panelClass: ['snackbar-error'],
+    });
+  }
+  shouldDisplayError(controlName: string): boolean {
+    const control = this.createForm.get(controlName);
+    if (control) {
+      return (control && (control.touched || this.submitted)) && control.invalid;
+    }
+    return false;
+  }
+
 }

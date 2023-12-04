@@ -13,6 +13,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatCardModule} from "@angular/material/card";
 import { TrainerSectionComponent } from './board-admin/trainer-section/trainer-section.component';
@@ -60,7 +61,8 @@ import { UserInfoComponent } from './profile/user-info/user-info.component';
     MatSnackBarModule,
     MatCardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
 
 
   ],

@@ -1,3 +1,4 @@
+
 <div class="container">
   <h1>Available Classes</h1>
 
@@ -10,8 +11,12 @@
           <p class="card-text">
             <strong>Duration:</strong> {{ trainingClass.durationInMinutes }} minutes
           </p>
-          <p class="card-text"><strong>Description:</strong> {{ trainingClass.description }}</p>
-          <p class="card-text"><strong>Category:</strong> {{ trainingClass.category }}</p>
+          <p class="card-text">
+            <strong>Description:</strong> {{ trainingClass.description }}
+          </p>
+          <p class="card-text">
+            <strong>Category:</strong> {{ trainingClass.category }}
+          </p>
 
           <div class="trainer-list">
             <h6 class="card-subheading">Trainers:</h6>
@@ -20,6 +25,7 @@
                 <div class="trainer-info">
                   <div class="trainer-name">
                     <strong>{{ trainer.name }}</strong>
+
                     <button class="trainer-details-btn" (click)="openTrainerDetails(trainer)">Show Info</button>
                   </div>
 
@@ -34,3 +40,14 @@
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div class="action-buttons">
+              <button class="btn btn-danger" (click)="deleteClass(trainingClass.id)">Delete Class</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

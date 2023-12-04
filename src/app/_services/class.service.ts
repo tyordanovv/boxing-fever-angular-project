@@ -15,7 +15,7 @@ const httpOptions = {
 export class ClassService {
 
   private readonly baseUrl = 'http://localhost:8080/api/v1/class/';
-  private readonly baseUrlTrainer = 'http://localhost:8080/api/v1/trainer';
+  private readonly baseUrlTrainer = 'http://localhost:8080/api/v1/trainer/';
  
 
   constructor(private http: HttpClient) { }
@@ -32,13 +32,9 @@ export class ClassService {
     );
   }
 
-  getTrainer(trainerId: number): Observable<TrainerModel> {
-    return this.http.get<TrainerModel>(`${this.baseUrlTrainer}/id/${trainerId}`, httpOptions);
+  deleteClass(id: number): Observable<any> {
+    const deleteUrl = `${this.baseUrl}${id}`;
+    return this.http.delete(deleteUrl);
   }
-
-  getAvailableTrainers(): Observable<TrainerModel[]> {
-    return this.http.get<TrainerModel[]>(`${this.baseUrlTrainer}/all`, httpOptions);
-  }
-
 }
 

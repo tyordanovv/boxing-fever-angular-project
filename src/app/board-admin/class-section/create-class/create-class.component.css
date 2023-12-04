@@ -55,3 +55,13 @@ input[type="checkbox"]:checked + .trainer-info {
   color: blue; /* Change to your preferred color */
   font-weight: bold;
 }
+
+.snackbar-error {
+  background-color: #f44336;
+  color: black;
+}
+
+.snackbar-success {
+  background-color: #4caf50;
+  color: black;
+}
