@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { sessionModel} from "../model/session.model";
-import { createSessionRequst } from '../model/create.session.request'
 
 const SESSION_API = 'http://localhost:8080/api/v1/session';
 
@@ -31,12 +30,12 @@ export class SessionService {
         capacity,
         sessionDate,
         className,
-       // trainer
       },
       httpOptions
     );
   }
 
+  // Delete currently not working because of a Foreign Key constraint in our backend
   deleteSession(id: number): Observable<any>{
     const deleteUrl = `${SESSION_API}/${id}`;
     return this.http.delete(deleteUrl);
@@ -47,17 +46,13 @@ export class SessionService {
     return this.http.post<void>(MapToUserUrl,{})};
 
   // Not implemented in our Backend
-//updateSession(id: number,startHour:string, endHour:string, capacity:number, sessionDate:string, className:string): Observable<any>{
+//  updateSession(id: number, capacity:number): Observable<any>{
 //  const updateSessionUrl =${SESSION_API} + '/edit';
 //  return  this.http.post(updateSessionUrl,
 //    {
 //      id,
-//      startHour,
-//      endHour,
 //      capacity,
-//      sessionDate,
-//      className
-//    }
+//    }, httpOptions
 //  )
 //}
 }
