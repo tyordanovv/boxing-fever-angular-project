@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { ClassService } from '../../../_services/class.service';
 import { TrainingClass } from '../../../model/training.class';
 import { TrainerModel } from '../../../model/trainer.model';
@@ -14,8 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ClassesViewComponent implements OnInit {
 
-  classes: TrainingClass[] = [];
-  selectedTrainer: TrainerModel | null = null;
+  @Input() classes: TrainingClass[] = [];
+  @Input() selectedTrainer: TrainerModel | null = null;
 
   constructor(private classService: ClassService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -63,14 +63,14 @@ export class ClassesViewComponent implements OnInit {
 
   displayErrorMessage(errorMessage: string): void {
     this.snackBar.open(errorMessage, 'Error', {
-      duration: 3000,
+      duration: 5000,
       panelClass: ['snackbar-error'],
     });
   }
 
   displaySuccessMessage(successMessage: string): void {
     this.snackBar.open(successMessage, 'Success', {
-      duration: 3000,
+      duration: 5000,
       panelClass: ['snackbar-success'],
     });
   }
